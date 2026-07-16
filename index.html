@@ -13,9 +13,9 @@
         * { box-sizing: border-box; margin: 0; padding: 0; }
 
         body {
-            background-color: #fbf0f0;
-            background-image: radial-gradient(#f3d5d8 1px, transparent 1px);
-            background-size: 24px 24px;
+            background-color: #faf1f2;
+            background-image: radial-gradient(#ecc6cb 1px, transparent 1px);
+            background-size: 20px 20px;
             font-family: 'Quicksand', sans-serif;
             color: #4a3b3b;
             overflow-x: hidden;
@@ -26,7 +26,7 @@
             justify-content: center;
         }
 
-        /* LOBBY / ENVELOPE SECTION */
+        /* INTRO / ENVELOPE DESIGN */
         #intro-section {
             display: flex;
             flex-direction: column;
@@ -38,80 +38,91 @@
             overflow: hidden;
         }
 
-        .envelope-container {
-            margin-bottom: 20px;
-            font-size: 5rem;
-            animation: heartbeat 1.5s infinite;
-            cursor: default;
+        .envelope-wrapper {
+            background: #ffffff;
+            padding: 40px;
+            border-radius: 24px;
+            box-shadow: 0 15px 35px rgba(209, 75, 100, 0.1);
+            text-align: center;
+            max-width: 400px;
+            width: 90%;
+            border: 1px solid #f5dbde;
+            transition: transform 0.3s ease;
         }
 
-        @keyframes heartbeat {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.1); }
-            100% { transform: scale(1); }
+        .envelope-icon {
+            font-size: 4.5rem;
+            display: inline-block;
+            animation: float 2.5s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-10px) rotate(3deg); }
+            100% { transform: translateY(0px) rotate(0deg); }
         }
 
         .intro-title {
             font-family: 'Playfair Display', serif;
-            font-size: 2.2rem;
+            font-size: 2rem;
             color: #d14b64;
-            text-align: center;
-            padding: 0 20px;
+            margin-top: 15px;
         }
 
         .intro-subtitle {
             font-family: 'Dancing Script', cursive;
-            font-size: 2rem;
-            margin-top: 10px;
+            font-size: 1.8rem;
+            margin-top: 8px;
             color: #8c6b6d;
         }
 
         .click-btn {
-            margin-top: 40px;
+            margin-top: 30px;
             background: linear-gradient(135deg, #e55b76, #d14b64);
             color: white;
             border: none;
-            padding: 15px 40px;
-            font-size: 1.2rem;
+            padding: 14px 36px;
+            font-size: 1.1rem;
             font-weight: 600;
             border-radius: 50px;
             cursor: pointer;
-            box-shadow: 0 8px 15px rgba(229,91,118,0.3);
-            transition: transform 0.1s ease, left 0.2s ease, top 0.2s ease;
+            box-shadow: 0 8px 15px rgba(229,91,118,0.25);
+            transition: transform 0.1s ease, left 0.2s ease, top 0.2s ease, background 0.3s;
             z-index: 10;
         }
 
-        /* NEW SCRAPBOOK DESIGN */
+        /* NEW SCRAPBOOK TIMELINE DESIGN */
         #scrapbook-section {
             display: none;
             width: 100%;
             max-width: 800px;
             margin: auto;
-            padding: 40px 20px;
+            padding: 60px 20px;
             animation: slideUp 1.2s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
         @keyframes slideUp {
-            from { transform: translateY(100px); opacity: 0; }
+            from { transform: translateY(80px); opacity: 0; }
             to { transform: translateY(0); opacity: 1; }
         }
 
         .letter-paper {
             background: #ffffff;
-            padding: 40px 30px;
+            padding: 45px 35px;
             border-radius: 24px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.05);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.03);
             border: 1px solid #f3d5d8;
-            margin-bottom: 40px;
+            margin-bottom: 50px;
             text-align: center;
             position: relative;
         }
 
+        /* Elegant postal striped border top */
         .letter-paper::before {
             content: '';
             position: absolute;
-            top: 0; left: 0; right: 0; height: 8px;
-            background: repeating-linear-gradient(-45deg, #e55b76, #e55b76 10px, #fff 10px, #fff 20px, #4a90e2 20px, #4a90e2 30px, #fff 30px, #fff 40px);
+            top: 0; left: 0; right: 0; height: 10px;
+            background: repeating-linear-gradient(-45deg, #e55b76, #e55b76 12px, #fff 12px, #fff 24px, #5c8fcb 24px, #5c8fcb 36px, #fff 36px, #fff 48px);
             border-top-left-radius: 24px;
             border-top-right-radius: 24px;
         }
@@ -121,21 +132,20 @@
             font-size: 3.5rem;
             color: #d14b64;
             margin-bottom: 20px;
-            margin-top: 15px;
         }
 
         .letter-paper p {
-            font-size: 1.1rem;
+            font-size: 1.15rem;
             line-height: 1.8;
             color: #5c4a4a;
         }
 
-        /* MEMORY TIMELINE */
+        /* THE MEMORY TIMELINE */
         .timeline {
             display: flex;
             flex-direction: column;
-            gap: 50px;
-            margin-top: 40px;
+            gap: 65px;
+            margin-top: 20px;
         }
 
         .timeline-item {
@@ -145,71 +155,82 @@
             width: 100%;
         }
 
-        /* MODERN POLAROID CARD (Supports Photos and Videos) */
+        /* PREMIUM VINTAGE POLAROID CARD */
         .polaroid-card {
-            background: white;
-            padding: 16px 16px 30px 16px;
+            background: #ffffff;
+            padding: 16px 16px 28px 16px;
             border-radius: 4px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
-            max-width: 380px;
+            box-shadow: 0 12px 28px rgba(0,0,0,0.06);
+            max-width: 390px;
             width: 100%;
-            transition: transform 0.3s ease;
-            border: 1px solid #eee;
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: 1px solid #eaeaea;
         }
 
         .polaroid-card:hover {
-            transform: scale(1.02) rotate(0deg) !important;
+            transform: scale(1.04) rotate(0deg) !important;
+            box-shadow: 0 15px 35px rgba(209,75,100,0.12);
         }
 
-        .polaroid-card img, .polaroid-card video {
+        .polaroid-card img {
             width: 100%;
-            height: 280px;
+            height: 340px;
             object-fit: cover;
             border-radius: 2px;
-            background-color: #f7f7f7;
+            background-color: #fafafa;
         }
 
         .polaroid-caption {
             font-family: 'Dancing Script', cursive;
-            font-size: 1.8rem;
+            font-size: 1.9rem;
             text-align: center;
-            margin-top: 15px;
+            margin-top: 16px;
             color: #d14b64;
         }
 
         .note-card {
-            background: #fffdf6;
+            background: #fffefb;
             border-left: 4px solid #e55b76;
-            padding: 20px;
+            padding: 20px 25px;
             border-radius: 12px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.02);
-            max-width: 450px;
-            margin-top: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.015);
+            max-width: 460px;
+            margin-top: 18px;
             text-align: center;
         }
 
         .note-card p {
             font-style: italic;
-            font-size: 1rem;
+            font-size: 1.05rem;
             line-height: 1.6;
+            color: #554444;
         }
 
         /* FOOTER */
         .footer {
             text-align: center;
-            padding: 50px 20px;
-            margin-top: 50px;
+            padding: 60px 20px;
+            margin-top: 60px;
+        }
+
+        .footer p {
+            max-width: 500px;
+            margin: 0 auto 20px auto;
+            line-height: 1.7;
+            font-size: 1.1rem;
         }
 
         .footer h3 {
             font-family: 'Dancing Script', cursive;
-            font-size: 2.5rem;
+            font-size: 2.8rem;
             color: #d14b64;
         }
 
-        /* Rotations for scrapbook aesthetic */
-        .rot-left { transform: rotate(-3deg); }
-        .rot-right { transform: rotate(2deg); }
+        /* Stylized tilt rotations for vintage scrapbook feel */
+        .rot-left-soft { transform: rotate(-1.5deg); }
+        .rot-right-soft { transform: rotate(1.5deg); }
+        .rot-left-hard { transform: rotate(-3deg); }
+        .rot-right-hard { transform: rotate(3deg); }
     </style>
 </head>
 
@@ -222,18 +243,19 @@
 
 <!-- INTRO -->
 <div id="intro-section">
-    <div class="envelope-container">✉️</div>
-    <h1 class="intro-title">You have a new letter...</h1>
-    <h2 class="intro-subtitle">I wrote this for you ♡</h2>
-
-    <button class="click-btn" id="revealBtn">Open It ♥</button>
+    <div class="envelope-wrapper">
+        <div class="envelope-icon">✉️</div>
+        <h1 class="intro-title">A letter just for you</h1>
+        <h2 class="intro-subtitle">Click below to open it ♡</h2>
+        <button class="click-btn" id="revealBtn">Open It ♥</button>
+    </div>
 </div>
 
 <!-- SCRAPBOOK -->
 <div id="scrapbook-section">
 
     <div class="letter-paper">
-        <h1>To my favorite human,</h1>
+        <h1>To the one who owns my thoughts</h1>
         <p>
             If love had a shape, it would look like you.<br>
             If peace had a voice, it would sound like you.<br>
@@ -243,10 +265,21 @@
 
     <div class="timeline">
 
-        <!-- ITEM 1: PHOTO -->
+        <!-- CARD 1: sBY8Aew - Imgur.jpg -->
         <div class="timeline-item">
-            <div class="polaroid-card rot-left">
-                <img src="xBTtJNl%20-%20Imgur.jpg" alt="Memory 1">
+            <div class="polaroid-card rot-left-hard">
+                <img src="sBY8Aew%20-%20Imgur.jpg" alt="Memory 1">
+                <div class="polaroid-caption">your radiant smile ♡</div>
+            </div>
+            <div class="note-card">
+                <p>There is a soft magic in the way you smile. It completely lights up the room and leaves me memorizing every tiny detail without even trying.</p>
+            </div>
+        </div>
+
+        <!-- CARD 2: xBTtJNl - Imgur.jpg -->
+        <div class="timeline-item">
+            <div class="polaroid-card rot-right-soft">
+                <img src="xBTtJNl%20-%20Imgur.jpg" alt="Memory 2">
                 <div class="polaroid-caption">the moment you exist ♡</div>
             </div>
             <div class="note-card">
@@ -254,13 +287,10 @@
             </div>
         </div>
 
-        <!-- ITEM 2: VIDEO (Replace 'your-video-1.mp4' with your actual mp4 name on GitHub) -->
+        <!-- CARD 3: AbmCfZ2 - Imgur.jpg -->
         <div class="timeline-item">
-            <div class="polaroid-card rot-right">
-                <video autoplay loop muted playsinline>
-                    <source src="your-video-1.mp4" type="video/mp4">
-                    Your browser does not support the video tag.
-                </video>
+            <div class="polaroid-card rot-left-soft">
+                <img src="AbmCfZ2%20-%20Imgur.jpg" alt="Memory 3">
                 <div class="polaroid-caption">your silent magic ✨</div>
             </div>
             <div class="note-card">
@@ -268,10 +298,10 @@
             </div>
         </div>
 
-        <!-- ITEM 3: PHOTO -->
+        <!-- CARD 4: GHKaV5z - Imgur.png -->
         <div class="timeline-item">
-            <div class="polaroid-card rot-left">
-                <img src="GHKaV5z%20-%20Imgur.png" alt="Memory 3">
+            <div class="polaroid-card rot-right-hard">
+                <img src="GHKaV5z%20-%20Imgur.png" alt="Memory 4">
                 <div class="polaroid-caption">my favorite thought ♡</div>
             </div>
             <div class="note-card">
@@ -279,13 +309,10 @@
             </div>
         </div>
 
-        <!-- ITEM 4: VIDEO (Replace 'your-video-2.mp4' with your actual mp4 name on GitHub) -->
+        <!-- CARD 5: e8Ww4Dx - Imgur.png -->
         <div class="timeline-item">
-            <div class="polaroid-card rot-right">
-                <video autoplay loop muted playsinline>
-                    <source src="your-video-2.mp4" type="video/mp4">
-                    Your browser does not support the video tag.
-                </video>
+            <div class="polaroid-card rot-left-hard">
+                <img src="e8Ww4Dx%20-%20Imgur.png" alt="Memory 5">
                 <div class="polaroid-caption">if forever exists... 🌸</div>
             </div>
             <div class="note-card">
@@ -295,8 +322,9 @@
 
     </div>
 
+    <!-- FOOTER -->
     <div class="footer">
-        <p style="max-width: 500px; margin: 0 auto 20px auto; line-height: 1.6;">
+        <p>
             I don’t promise perfection. I don’t promise easy days. But I promise presence — always staying, always choosing you in every version of life.
         </p>
         <h3>— orxnge</h3>
@@ -313,7 +341,7 @@
         "Too slow! ♡",
         "Over here! 🌸",
         "Come on, you can do it!",
-        "Okay, I'll stop running! 😂"
+        "Okay, I'll stop! Click me ♥"
     ];
     let escapeCount = 0;
 
@@ -323,11 +351,15 @@
 
     // Runaway Logic
     btn.addEventListener('mouseover', function() {
-        if (isTouchDevice()) return; // No runaway on phones!
+        if (isTouchDevice()) return; // No runaway on mobile phones
         
-        // Let her catch it after 5 attempts so she can actually click it!
+        // After 5 attempts, the button stops running so it is 100% clickable on laptops
         if (escapeCount >= 5) {
+            btn.style.position = 'static';
+            btn.style.margin = '30px auto 0 auto';
+            btn.style.display = 'block';
             btn.innerText = "Okay, open me! ♥";
+            btn.style.background = "linear-gradient(135deg, #2ecc71, #27ae60)"; // Turns green to show success!
             return; 
         }
 
@@ -335,7 +367,7 @@
             btn.style.position = 'absolute';
         }
 
-        const padding = 60;
+        const padding = 70;
         const maxX = window.innerWidth - btn.offsetWidth - padding;
         const maxY = window.innerHeight - btn.offsetHeight - padding;
 
@@ -349,7 +381,7 @@
         escapeCount++;
     });
 
-    // Reveal Logic
+    // Reveal Logic (Works instantly on click/tap)
     btn.addEventListener('click', function() {
         document.getElementById('intro-section').style.display = 'none';
         document.getElementById('scrapbook-section').style.display = 'block';
