@@ -13,9 +13,9 @@
         * { box-sizing: border-box; margin: 0; padding: 0; }
 
         body {
-            background-color: #050508; /* Fallback midnight black */
+            background-color: #08070a; /* Fallback dark night */
             font-family: 'Inter', sans-serif;
-            color: #e5e5e5;
+            color: #f3f3f3;
             overflow: hidden;
             height: 100vh;
             width: 100vw;
@@ -27,19 +27,19 @@
             position: relative;
         }
 
-        /* --- BLURRED CUSTOM BACKGROUND IMAGE (Switched back to .jpg) --- */
+        /* --- BLURRED CUSTOM BACKGROUND IMAGE --- */
         .custom-bg {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background-image: url('bg.jpg'); /* Look for bg.jpg directly */
+            background-image: url('bg.jpg');
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
-            filter: blur(12px) brightness(0.4); /* Applies a dreamy, dark blur */
-            transform: scale(1.05); /* Prevents white edges caused by the blur */
+            filter: blur(14px) brightness(0.35); /* Dreamy, deep focus */
+            transform: scale(1.06); /* Prevents white edges */
             z-index: 1;
             pointer-events: none;
             transition: filter 1s ease;
@@ -49,9 +49,9 @@
         #intro-screen {
             position: absolute;
             top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(5, 5, 8, 0.85); /* Dark overlay to let the button pop */
-            backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
+            background: rgba(8, 7, 10, 0.82); 
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -61,35 +61,35 @@
         }
 
         .envelope-button {
-            background: linear-gradient(135deg, rgba(255,255,255,0.03) 0%, rgba(255,255,255,0.01) 100%);
-            border: 1px solid rgba(199, 122, 132, 0.3); /* Soft rose gold border */
-            padding: 18px 44px;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.04) 0%, rgba(255, 255, 255, 0.01) 100%);
+            border: 1px solid rgba(224, 169, 175, 0.3); /* Warm, delicate soft rose gold */
+            padding: 20px 48px;
             color: #ffffff;
             font-family: 'Playfair Display', serif;
             font-size: 1.15rem;
             font-style: italic;
             border-radius: 50px;
             cursor: pointer;
-            transition: all 0.5s cubic-bezier(0.25, 1, 0.5, 1);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255,255,255,0.1);
-            letter-spacing: 1.5px;
+            transition: all 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255,255,255,0.1);
+            letter-spacing: 2px;
             z-index: 101;
         }
 
         .envelope-button:hover {
             background: #ffffff;
-            color: #050508;
+            color: #08070a;
             border-color: #ffffff;
-            transform: translateY(-3px) scale(1.02);
-            box-shadow: 0 20px 40px rgba(199, 122, 132, 0.2);
+            transform: translateY(-4px) scale(1.01);
+            box-shadow: 0 25px 45px rgba(224, 169, 175, 0.25);
         }
 
         .audio-helper {
             margin-top: 24px;
             font-size: 0.75rem;
-            color: rgba(255, 255, 255, 0.3);
+            color: rgba(255, 255, 255, 0.25);
             letter-spacing: 1px;
             font-weight: 300;
         }
@@ -110,74 +110,75 @@
         /* Stack Container */
         .stack-container {
             position: relative;
-            width: 340px;
-            height: 540px;
-            perspective: 1200px;
+            width: 350px;
+            height: 560px;
+            perspective: 1400px;
         }
 
-        /* Card Blueprint - Elegant frosted borders to look great on the new background */
+        /* Card Blueprint - Beautiful soft editorial design */
         .card {
             position: absolute;
             width: 100%;
             height: 100%;
-            background: linear-gradient(145deg, #121217 0%, #0d0d11 100%);
-            border-radius: 24px;
-            box-shadow: 0 30px 60px rgba(0,0,0,0.85), inset 0 1px 1px rgba(255,255,255,0.06);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            padding: 20px;
+            background: linear-gradient(150deg, #16151a 0%, #0e0d12 100%);
+            border-radius: 28px;
+            box-shadow: 0 40px 80px rgba(0,0,0,0.85), inset 0 1px 1px rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            padding: 24px;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            transition: transform 0.8s cubic-bezier(0.2, 1, 0.2, 1), opacity 0.8s ease, z-index 0.8s ease;
+            transition: transform 0.85s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.85s ease, z-index 0.85s ease;
             cursor: pointer;
             overflow: hidden;
             transform-origin: center bottom;
         }
 
-        /* Subtle glass highlight overlay */
+        /* High-end glow reflection */
         .card::before {
             content: '';
             position: absolute;
             top: 0; left: 0; width: 100%; height: 50%;
-            background: linear-gradient(to bottom, rgba(255,255,255,0.02) 0%, rgba(255,255,255,0) 100%);
+            background: linear-gradient(to bottom, rgba(255,255,255,0.025) 0%, rgba(255,255,255,0) 100%);
             pointer-events: none;
             z-index: 2;
         }
 
         .card-img-wrapper {
             width: 100%;
-            height: 58%;
-            border-radius: 16px;
+            height: 54%;
+            border-radius: 20px;
             overflow: hidden;
             position: relative;
-            background: #15151c;
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+            background: #19181f;
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            box-shadow: 0 12px 30px rgba(0,0,0,0.5);
         }
 
         .card-img, .card-video {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: transform 0.5s ease;
+            transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
         .card:hover .card-img {
-            transform: scale(1.03);
+            transform: scale(1.04);
         }
 
-        /* Scrollable Text Section */
+        /* Soft Text Area with Gentle scroll indicator */
         .card-info {
-            height: 38%;
+            height: 42%;
             display: flex;
             flex-direction: column;
             justify-content: flex-start;
-            padding-top: 14px;
+            padding-top: 16px;
             overflow-y: auto;
-            padding-right: 6px;
+            padding-right: 4px;
+            position: relative;
         }
 
-        /* Scrollbar styles */
+        /* Scrollbar aesthetics */
         .card-info::-webkit-scrollbar {
             width: 3px;
         }
@@ -185,68 +186,69 @@
             background: transparent;
         }
         .card-info::-webkit-scrollbar-thumb {
-            background: rgba(199, 122, 132, 0.25);
+            background: rgba(224, 169, 175, 0.25);
             border-radius: 10px;
         }
         .card-info::-webkit-scrollbar-thumb:hover {
-            background: rgba(199, 122, 132, 0.5);
+            background: rgba(224, 169, 175, 0.5);
         }
 
         .card-tag {
-            font-size: 0.68rem;
+            font-size: 0.65rem;
             text-transform: uppercase;
-            letter-spacing: 3px;
-            color: #c97a84; /* Soft rose gold */
+            letter-spacing: 4px;
+            color: #e0a9af; /* Soft pastel pink-gold */
             font-weight: 600;
-            margin-bottom: 8px;
+            margin-bottom: 10px;
             display: inline-block;
         }
 
         .card-text {
             font-family: 'Playfair Display', serif;
-            font-size: 1.05rem;
-            line-height: 1.6;
-            color: rgba(255, 255, 255, 0.9);
+            font-size: 1rem;
+            line-height: 1.65;
+            color: rgba(255, 255, 255, 0.88);
             font-style: italic;
+            font-weight: 400;
         }
 
-        /* 3D Stack positioning */
+        /* 3D Stack positions */
         .card.layer-0 {
             transform: translate3d(0, 0, 0) rotate(0deg);
             z-index: 10;
             opacity: 1;
         }
         .card.layer-1 {
-            transform: translate3d(10px, -20px, -30px) rotate(2deg);
+            transform: translate3d(8px, -22px, -40px) rotate(1.5deg);
             z-index: 9;
             opacity: 0.9;
         }
         .card.layer-2 {
-            transform: translate3d(-10px, -40px, -60px) rotate(-2deg);
+            transform: translate3d(-8px, -44px, -80px) rotate(-1.5deg);
             z-index: 8;
-            opacity: 0.65;
+            opacity: 0.6;
         }
         .card.layer-hidden {
-            transform: translate3d(0, 0, -120px) scale(0.8);
+            transform: translate3d(0, 0, -140px) scale(0.8);
             z-index: 1;
             opacity: 0;
             pointer-events: none;
         }
 
-        /* Smooth throw animation */
+        /* Smooth fling animation */
         .card.swipe-away {
-            transform: translate3d(160%, -60px, 50px) rotate(25deg) !important;
+            transform: translate3d(165%, -50px, 80px) rotate(22deg) !important;
             opacity: 0 !important;
             pointer-events: none;
         }
 
-        /* Final Text-Only Card */
+        /* Final Letter-Only Card */
         .card-text-only {
             justify-content: center;
             text-align: center;
-            background: radial-gradient(circle at center, #1a141a 0%, #0d0d11 100%);
-            padding: 35px 25px;
-            border: 1px solid rgba(199, 122, 132, 0.2);
+            background: radial-gradient(circle at center, #1e1b24 0%, #0e0d12 100%);
+            padding: 40px 28px;
+            border: 1px solid rgba(224, 169, 175, 0.18);
         }
 
         .card-text-only .card-info {
@@ -257,95 +259,102 @@
         }
 
         .card-text-only .card-text {
-            font-size: 1.25rem;
-            line-height: 1.7;
-            margin-bottom: 20px;
+            font-size: 1.2rem;
+            line-height: 1.75;
+            margin-bottom: 25px;
         }
 
         .card-author {
             font-family: 'Playfair Display', serif;
             font-style: italic;
-            font-size: 1.15rem;
-            color: #c97a84;
+            font-size: 1.1rem;
+            color: #e0a9af;
             font-weight: 500;
+            letter-spacing: 1px;
+            margin-top: 10px;
         }
 
-        /* Floating Hint */
+        /* Subtle Bottom Hint */
         .hint-text {
             position: absolute;
-            bottom: 40px;
-            font-size: 0.7rem;
-            color: rgba(255, 255, 255, 0.35);
-            letter-spacing: 3px;
+            bottom: 35px;
+            font-size: 0.68rem;
+            color: rgba(255, 255, 255, 0.28);
+            letter-spacing: 4px;
             text-transform: uppercase;
             z-index: 5;
-            animation: floatGlow 2.5s infinite ease-in-out;
+            animation: floatGlow 3s infinite ease-in-out;
             pointer-events: none;
         }
 
         @keyframes floatGlow {
             0%, 100% { opacity: 0.3; transform: translateY(0); }
-            50% { opacity: 0.8; transform: translateY(-4px); }
+            50% { opacity: 0.75; transform: translateY(-3px); }
         }
 
-        /* Audio Control Pill */
+        /* Music Controller Pill */
         .music-indicator {
             position: absolute;
             top: 30px;
             right: 30px;
             display: flex;
             align-items: center;
-            gap: 10px;
-            font-size: 0.75rem;
-            color: rgba(255, 255, 255, 0.7);
-            background: rgba(5, 5, 8, 0.6);
-            padding: 10px 20px;
+            gap: 12px;
+            font-size: 0.72rem;
+            color: rgba(255, 255, 255, 0.65);
+            background: rgba(8, 7, 10, 0.55);
+            padding: 10px 22px;
             border-radius: 30px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
             z-index: 20;
             cursor: pointer;
-            transition: all 0.4s ease;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            letter-spacing: 1px;
         }
 
         .music-indicator:hover {
             background: rgba(255, 255, 255, 0.08);
-            border-color: rgba(199, 122, 132, 0.4);
+            border-color: rgba(224, 169, 175, 0.45);
             color: #fff;
         }
 
         .music-dot {
-            width: 8px;
-            height: 8px;
-            background-color: #c97a84;
+            width: 7px;
+            height: 7px;
+            background-color: #e0a9af;
             border-radius: 50%;
         }
 
         .music-dot.playing {
-            animation: musicWave 1.2s infinite ease-in-out;
+            animation: musicWave 1.4s infinite ease-in-out;
         }
 
         @keyframes musicWave {
-            0%, 100% { transform: scale(0.8); opacity: 0.5; }
-            50% { transform: scale(1.4); opacity: 1; }
+            0%, 100% { transform: scale(0.85); opacity: 0.4; }
+            50% { transform: scale(1.35); opacity: 1; }
         }
     </style>
 </head>
 
 <body>
 
+<!-- THE BLURRED BG IMAGE -->
 <div class="custom-bg"></div>
 
+<!-- BACKGROUND AUDIO -->
 <audio id="myAudio" loop preload="auto">
     <source id="audioSource" src="duvet.mp3" type="audio/mpeg">
 </audio>
 
+<!-- SCREEN 1: THE ENTRANCE -->
 <div id="intro-screen">
     <button class="envelope-button" onclick="startExperience()">Open Invitation</button>
     <div class="audio-helper">Music: duvet.mp3</div>
 </div>
 
+<!-- SCREEN 2: 3D CARD STACK GALLERY -->
 <div id="main-stage">
     
     <div class="music-indicator" id="musicToggle" onclick="toggleAudio()">
@@ -355,60 +364,66 @@
 
     <div class="stack-container" id="cardStack">
 
+        <!-- CARD 1 (Photo) -->
         <div class="card">
             <div class="card-img-wrapper">
                 <img class="card-img" src="https://i.imgur.com/sBY8Aew.jpg" alt="Gallery 1">
             </div>
             <div class="card-info">
-                <span class="card-tag">01 / Your Smile</span>
-                <p class="card-text">"There is a soft, completely untamed magic in the way your smile breaks across your face. It doesn't just brighten up a room—it completely rewires the atmosphere around you. It's the kind of light that lingers in my mind long after the day has ended, leaving me happily tracing every single line and curve of it in my memory. You have this quiet, beautiful power to turn the most mundane moments into something poetic, simply by laughing."</p>
+                <span class="card-tag">01 / Your Light</span>
+                <p class="card-text">"There is a soft, completely untamed magic in the way your smile breaks across your face. It doesn't just brighten up a room—it completely rewires the atmosphere around you. It's the kind of warmth that lingers in my mind long after the day has ended, leaving me happily tracing every single line and curve of it in my memory. You have this quiet, beautiful power to turn the most mundane moments into something poetic. It’s a beauty that doesn't demand attention, but entirely commands the heart. I often find myself looking at you and wondering how someone can carry so much effortless starlight inside them."</p>
             </div>
         </div>
 
+        <!-- CARD 2 (VIDEO 1) -->
         <div class="card">
             <div class="card-img-wrapper">
                 <video class="card-video" src="video1.mp4" loop muted playsinline></video>
             </div>
             <div class="card-info">
-                <span class="card-tag">02 / Presence</span>
-                <p class="card-text">"Every time you are near, the entire world feels like it dials down its volume. All the chaotic thoughts, the loud expectations, and the endless noise inside my mind just slowly drift away into nothingness. You bring with you a stillness that is so hard to find in this busy life. It's like finding a quiet clearing in a dense forest; your voice, your warmth, and the sheer grace of your existence are my constant reminder of what peace actually feels like."</p>
+                <span class="card-tag">02 / Cozy Havens</span>
+                <p class="card-text">"Every single time you are near, the entire world feels like it dials down its volume. All the chaotic thoughts, the loud expectations of life, and the endless noise inside my mind just slowly drift away into nothingness. You bring with you a stillness that is so rare to find in this busy life. It's like finding a quiet clearing in a dense forest, or sitting inside watching a gentle rainfall tap against the glass while feeling perfectly warm and protected. Your voice, your warmth, and the sheer grace of your existence are my constant reminder of what peace actually feels like."</p>
             </div>
         </div>
 
+        <!-- CARD 3 (Photo) -->
         <div class="card">
             <div class="card-img-wrapper">
                 <img class="card-img" src="https://i.imgur.com/AbmCfZ2.jpg" alt="Gallery 3">
             </div>
             <div class="card-info">
-                <span class="card-tag">03 / Magic</span>
-                <p class="card-text">"I don't think you even realize the kind of spell you cast on people. You move through this world so effortlessly, unaware that your very existence is a living work of art. The subtle, gentle way you speak, the warmth you extend without asking for anything in return, and the beautiful complexity of your mind—it's pure poetry in motion. Some people try so hard to be remembered, but you leave an unforgettable imprint on my soul just by being you."</p>
+                <span class="card-tag">03 / Artistry</span>
+                <p class="card-text">"I don't think you even realize the kind of spell you cast on people just by living. You move through this world so effortlessly, unaware that your very existence is a living work of art. The subtle, gentle way you speak, the warmth you extend without asking for anything in return, and the beautiful, deep complexity of your mind—it's pure poetry in motion. Some people try so incredibly hard to be noticed, but you leave an unforgettable, comforting imprint on my soul just by being exactly who you are."</p>
             </div>
         </div>
 
+        <!-- CARD 4 (VIDEO 2) -->
         <div class="card">
             <div class="card-img-wrapper">
                 <video class="card-video" src="video2.mp4" loop muted playsinline></video>
             </div>
             <div class="card-info">
-                <span class="card-tag">04 / Calm</span>
-                <p class="card-text">"Whenever the days get heavy and the path ahead feels blurred, thinking about you becomes my immediate shelter. You are my absolute calm. It feels like watching gentle rainfall tap against a window pane while being completely safe and warm inside. No matter how harsh or unforgiving the world might try to be out there, knowing you are in my life makes everything softer, easier, and infinitely more beautiful. You make the storms worth walking through."</p>
+                <span class="card-tag">04 / My Sanctuary</span>
+                <p class="card-text">"Whenever the days get heavy and the path ahead feels blurred, thinking of you becomes my immediate shelter. You are my absolute calm. No matter how harsh or unforgiving the world tries to be, knowing that you exist in my life makes everything softer, easier, and infinitely more beautiful. You make the storms worth walking through, because I know that at the end of every difficult road, there is the thought of you waiting to make the world make sense again."</p>
             </div>
         </div>
 
+        <!-- CARD 5 (Photo) -->
         <div class="card">
             <div class="card-img-wrapper">
                 <img class="card-img" src="https://i.imgur.com/e8Ww4Dx.jpg" alt="Gallery 5">
             </div>
             <div class="card-info">
-                <span class="card-tag">05 / Direction</span>
-                <p class="card-text">"If destiny had a physical compass, I am entirely convinced it would always point its needle straight back to you. The future is an unpredictable thing, full of changes and paths we can't foresee, but I find so much comfort in knowing that some things are meant to be. Our connection feels like an anchor, holding us steady through the currents. No matter where life takes us, my heart will always find its familiar way back home to you."</p>
+                <span class="card-tag">05 / The Compass</span>
+                <p class="card-text">"If destiny had a physical compass, I am entirely convinced it would always point its needle straight back to you. The future is an unpredictable thing, full of changes, detours, and paths we can't foresee, but I find so much comfort in knowing that some things are written in the stars. Our connection feels like an anchor, holding us steady through the wildest currents. No matter where life takes us, my heart will always find its familiar, sweet way back home to you."</p>
             </div>
         </div>
 
+        <!-- CARD 6: THE FINAL WRAP (TEXT) -->
         <div class="card card-text-only">
             <div class="card-info">
-                <span class="card-tag" style="margin-bottom: 25px;">A Promise</span>
-                <p class="card-text">"I promise presence — not just when the days are golden and easy, but in the dark, quiet corners when the world feels too heavy to carry. I promise to always stay, to always listen, and to choose you in every version of life we encounter. You are my harbor, and my promise to you is safe, unwavering, and entirely yours."</p>
+                <span class="card-tag" style="margin-bottom: 25px;">A Pure Promise</span>
+                <p class="card-text">"I promise presence — not just when the days are golden and easy, but in the dark, quiet corners when the world feels too heavy to carry alone. I promise to always stay, to always listen, and to choose you in every version of life we encounter. You are my harbor, and my promise to you is safe, unwavering, and entirely yours."</p>
                 <p class="card-author">— orxnge</p>
             </div>
         </div>
