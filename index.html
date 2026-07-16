@@ -7,149 +7,209 @@
     
     <title>For You ❤️</title>
 
-    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=Playfair+Display:wght@400;600&family=Lato:wght@300;400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=Playfair+Display:wght@400;600&family=Quicksand:wght@400;600&display=swap" rel="stylesheet">
 
     <style>
         * { box-sizing: border-box; margin: 0; padding: 0; }
 
         body {
-            background-color: #fdf3f4;
-            background-image: url('https://www.transparenttextures.com/patterns/white-floral-motif.png');
-            font-family: 'Lato', sans-serif;
+            background-color: #fbf0f0;
+            background-image: radial-gradient(#f3d5d8 1px, transparent 1px);
+            background-size: 24px 24px;
+            font-family: 'Quicksand', sans-serif;
             color: #4a3b3b;
             overflow-x: hidden;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
         }
 
-        /* INTRO */
+        /* LOBBY / ENVELOPE SECTION */
         #intro-section {
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             height: 100vh;
-            text-align: center;
-            padding: 20px;
+            width: 100%;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .envelope-container {
+            margin-bottom: 20px;
+            font-size: 5rem;
+            animation: heartbeat 1.5s infinite;
+            cursor: default;
+        }
+
+        @keyframes heartbeat {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
         }
 
         .intro-title {
             font-family: 'Playfair Display', serif;
-            font-size: 3rem;
+            font-size: 2.2rem;
             color: #d14b64;
+            text-align: center;
+            padding: 0 20px;
         }
 
         .intro-subtitle {
             font-family: 'Dancing Script', cursive;
-            font-size: 2.5rem;
+            font-size: 2rem;
             margin-top: 10px;
+            color: #8c6b6d;
         }
 
         .click-btn {
-            margin-top: 30px;
-            background-color: #e55b76;
+            margin-top: 40px;
+            background: linear-gradient(135deg, #e55b76, #d14b64);
             color: white;
             border: none;
             padding: 15px 40px;
-            font-size: 1.3rem;
-            border-radius: 30px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            border-radius: 50px;
             cursor: pointer;
-            box-shadow: 0 10px 20px rgba(229,91,118,0.3);
-            transition: 0.3s;
+            box-shadow: 0 8px 15px rgba(229,91,118,0.3);
+            transition: transform 0.1s ease, left 0.2s ease, top 0.2s ease;
+            z-index: 10;
         }
 
-        .click-btn:hover {
-            transform: translateY(-5px);
-            background-color: #d14b64;
-        }
-
-        /* SCRAPBOOK */
+        /* NEW SCRAPBOOK DESIGN */
         #scrapbook-section {
             display: none;
-            max-width: 1100px;
+            width: 100%;
+            max-width: 800px;
             margin: auto;
-            padding: 60px 20px;
-            animation: fadeIn 1.5s ease-in;
+            padding: 40px 20px;
+            animation: slideUp 1.2s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
-        @keyframes fadeIn {
-            from { opacity: 0; } to { opacity: 1; }
+        @keyframes slideUp {
+            from { transform: translateY(100px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
         }
 
-        .scrapbook-header {
+        .letter-paper {
+            background: #ffffff;
+            padding: 40px 30px;
+            border-radius: 24px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.05);
+            border: 1px solid #f3d5d8;
+            margin-bottom: 40px;
             text-align: center;
-            padding: 25px;
-            background: rgba(255,255,255,0.7);
-            border-radius: 15px;
-            margin-bottom: 50px;
+            position: relative;
         }
 
-        .scrapbook-header h1 {
+        .letter-paper::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; height: 8px;
+            background: repeating-linear-gradient(-45deg, #e55b76, #e55b76 10px, #fff 10px, #fff 20px, #4a90e2 20px, #4a90e2 30px, #fff 30px, #fff 40px);
+            border-top-left-radius: 24px;
+            border-top-right-radius: 24px;
+        }
+
+        .letter-paper h1 {
             font-family: 'Dancing Script', cursive;
-            font-size: 4rem;
+            font-size: 3.5rem;
+            color: #d14b64;
+            margin-bottom: 20px;
+            margin-top: 15px;
+        }
+
+        .letter-paper p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #5c4a4a;
+        }
+
+        /* MEMORY TIMELINE */
+        .timeline {
+            display: flex;
+            flex-direction: column;
+            gap: 50px;
+            margin-top: 40px;
+        }
+
+        .timeline-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+        }
+
+        /* MODERN POLAROID CARD (Supports Photos and Videos) */
+        .polaroid-card {
+            background: white;
+            padding: 16px 16px 30px 16px;
+            border-radius: 4px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+            max-width: 380px;
+            width: 100%;
+            transition: transform 0.3s ease;
+            border: 1px solid #eee;
+        }
+
+        .polaroid-card:hover {
+            transform: scale(1.02) rotate(0deg) !important;
+        }
+
+        .polaroid-card img, .polaroid-card video {
+            width: 100%;
+            height: 280px;
+            object-fit: cover;
+            border-radius: 2px;
+            background-color: #f7f7f7;
+        }
+
+        .polaroid-caption {
+            font-family: 'Dancing Script', cursive;
+            font-size: 1.8rem;
+            text-align: center;
+            margin-top: 15px;
             color: #d14b64;
         }
 
-        .scrapbook-header p {
-            margin-top: 10px;
+        .note-card {
+            background: #fffdf6;
+            border-left: 4px solid #e55b76;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.02);
+            max-width: 450px;
+            margin-top: 15px;
+            text-align: center;
+        }
+
+        .note-card p {
+            font-style: italic;
+            font-size: 1rem;
             line-height: 1.6;
         }
 
-        .scrapbook-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 30px;
-        }
-
-        .card {
-            background: white;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.08);
-            transition: 0.3s;
-        }
-
-        .card:hover { transform: scale(1.03); }
-
-        .polaroid {
-            padding: 15px 15px 40px;
-        }
-
-        .polaroid img {
-            width: 100%;
-            height: 300px;
-            object-fit: cover;
-        }
-
-        .paper-note {
-            padding: 25px;
-        }
-
-        .paper-note h3 {
-            font-family: 'Playfair Display';
-            color: #d14b64;
-            margin-bottom: 10px;
-        }
-
-        .heart {
-            display: block;
-            margin-top: 10px;
-            color: #d14b64;
-            font-size: 1.5rem;
-        }
-
-        .scrapbook-footer {
-            margin-top: 60px;
+        /* FOOTER */
+        .footer {
             text-align: center;
-            padding: 40px;
-            background: rgba(255,255,255,0.7);
-            border-radius: 15px;
+            padding: 50px 20px;
+            margin-top: 50px;
         }
 
-        .scrapbook-footer h3 {
-            font-family: 'Dancing Script';
+        .footer h3 {
+            font-family: 'Dancing Script', cursive;
             font-size: 2.5rem;
             color: #d14b64;
         }
 
-        .rotate-left { transform: rotate(-2deg); }
-        .rotate-right { transform: rotate(3deg); }
+        /* Rotations for scrapbook aesthetic */
+        .rot-left { transform: rotate(-3deg); }
+        .rot-right { transform: rotate(2deg); }
     </style>
 </head>
 
@@ -162,17 +222,18 @@
 
 <!-- INTRO -->
 <div id="intro-section">
-    <h1 class="intro-title">finally you came…</h1>
-    <h2 class="intro-subtitle">I was waiting for this moment ♡</h2>
+    <div class="envelope-container">✉️</div>
+    <h1 class="intro-title">You have a new letter...</h1>
+    <h2 class="intro-subtitle">I wrote this for you ♡</h2>
 
-    <button class="click-btn" id="revealBtn">Open My Heart ♥</button>
+    <button class="click-btn" id="revealBtn">Open It ♥</button>
 </div>
 
 <!-- SCRAPBOOK -->
 <div id="scrapbook-section">
 
-    <div class="scrapbook-header">
-        <h1>to the one who owns my thoughts</h1>
+    <div class="letter-paper">
+        <h1>To my favorite human,</h1>
         <p>
             If love had a shape, it would look like you.<br>
             If peace had a voice, it would sound like you.<br>
@@ -180,99 +241,126 @@
         </p>
     </div>
 
-    <div class="scrapbook-grid">
+    <div class="timeline">
 
-        <!-- 1 -->
-        <div class="card polaroid rotate-left">
-            <img src="xBTtJNl%20-%20Imgur.jpg">
-            <span class="heart">♡</span>
+        <!-- ITEM 1: PHOTO -->
+        <div class="timeline-item">
+            <div class="polaroid-card rot-left">
+                <img src="xBTtJNl%20-%20Imgur.jpg" alt="Memory 1">
+                <div class="polaroid-caption">the moment you exist ♡</div>
+            </div>
+            <div class="note-card">
+                <p>Every time I see you, the world feels softer. Like everything loud inside me finally calms down. You are comfort in human form.</p>
+            </div>
         </div>
 
-        <div class="card paper-note rotate-right">
-            <h3>the moment you exist</h3>
-            <p>
-                Every time I see you, the world feels softer.
-                Like everything loud inside me finally calms down.
-                You are not just beautiful — you are the definition of comfort in human form.
-            </p>
-            <span class="heart">♡</span>
+        <!-- ITEM 2: VIDEO (Replace 'your-video-1.mp4' with your actual mp4 name on GitHub) -->
+        <div class="timeline-item">
+            <div class="polaroid-card rot-right">
+                <video autoplay loop muted playsinline>
+                    <source src="your-video-1.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+                <div class="polaroid-caption">your silent magic ✨</div>
+            </div>
+            <div class="note-card">
+                <p>You don’t even realize it, but your presence changes everything. The way you exist is like poetry that doesn't need words.</p>
+            </div>
         </div>
 
-        <!-- 2 -->
-        <div class="card polaroid rotate-right">
-            <img src="AbmCfZ2%20-%20Imgur.jpg">
-            <span class="heart">♡</span>
+        <!-- ITEM 3: PHOTO -->
+        <div class="timeline-item">
+            <div class="polaroid-card rot-left">
+                <img src="GHKaV5z%20-%20Imgur.png" alt="Memory 3">
+                <div class="polaroid-caption">my favorite thought ♡</div>
+            </div>
+            <div class="note-card">
+                <p>Even on my worst days, thinking about you feels like light breaking through clouds. You became my calm without even trying.</p>
+            </div>
         </div>
 
-        <div class="card paper-note rotate-left">
-            <h3>your silent magic</h3>
-            <p>
-                You don’t even realize it, but your presence changes everything.
-                The way you exist is like poetry that doesn’t need words.
-                I find myself memorizing your details without even trying.
-            </p>
-            <span class="heart">♡</span>
-        </div>
-
-        <!-- 3 -->
-        <div class="card polaroid rotate-left">
-            <img src="GHKaV5z%20-%20Imgur.png">
-            <span class="heart">♡</span>
-        </div>
-
-        <div class="card paper-note rotate-right">
-            <h3>my favorite thought</h3>
-            <p>
-                Even on my worst days, thinking about you feels like light breaking through clouds.
-                You became my calm without even asking to.
-                And somehow… I never want to go back to who I was before you.
-            </p>
-            <span class="heart">♡</span>
-        </div>
-
-        <!-- 4 -->
-        <div class="card polaroid rotate-right">
-            <img src="e8Ww4Dx%20-%20Imgur.png">
-            <span class="heart">♡</span>
-        </div>
-
-        <div class="card paper-note rotate-left">
-            <h3>if forever exists</h3>
-            <p>
-                I don’t know what the future holds,
-                but I know that if forever had a direction,
-                it would always find its way back to you and me.
-            </p>
-            <span class="heart">♡</span>
+        <!-- ITEM 4: VIDEO (Replace 'your-video-2.mp4' with your actual mp4 name on GitHub) -->
+        <div class="timeline-item">
+            <div class="polaroid-card rot-right">
+                <video autoplay loop muted playsinline>
+                    <source src="your-video-2.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+                <div class="polaroid-caption">if forever exists... 🌸</div>
+            </div>
+            <div class="note-card">
+                <p>I don’t know what the future holds, but I know that if forever had a direction, it would always find its way back to us.</p>
+            </div>
         </div>
 
     </div>
 
-    <div class="scrapbook-footer">
-        <p>
-            I don’t promise perfection. I don’t promise easy days.
-            But I promise presence — always staying, always choosing you in every version of life.
+    <div class="footer">
+        <p style="max-width: 500px; margin: 0 auto 20px auto; line-height: 1.6;">
+            I don’t promise perfection. I don’t promise easy days. But I promise presence — always staying, always choosing you in every version of life.
         </p>
-
-        <h3>
-            you are my favorite place in this world<br>
-            <span style="font-size:1.5rem;">— orxnge</span>
-        </h3>
+        <h3>— orxnge</h3>
     </div>
 
 </div>
 
 <script>
-document.getElementById('revealBtn').addEventListener('click', function() {
-    document.getElementById('intro-section').style.display = 'none';
-    document.getElementById('scrapbook-section').style.display = 'block';
+    const btn = document.getElementById('revealBtn');
     
-    // Play the music
-    var audio = document.getElementById("myAudio");
-    audio.play();
-    
-    window.scrollTo(0,0);
-});
+    const phrases = [
+        "Catch me! 😜",
+        "Nope! Try again~",
+        "Too slow! ♡",
+        "Over here! 🌸",
+        "Come on, you can do it!",
+        "Okay, I'll stop running! 😂"
+    ];
+    let escapeCount = 0;
+
+    function isTouchDevice() {
+        return ('ontouchstart' in window) || (navigator.maxTouchPoints > 0);
+    }
+
+    // Runaway Logic
+    btn.addEventListener('mouseover', function() {
+        if (isTouchDevice()) return; // No runaway on phones!
+        
+        // Let her catch it after 5 attempts so she can actually click it!
+        if (escapeCount >= 5) {
+            btn.innerText = "Okay, open me! ♥";
+            return; 
+        }
+
+        if (btn.style.position !== 'absolute') {
+            btn.style.position = 'absolute';
+        }
+
+        const padding = 60;
+        const maxX = window.innerWidth - btn.offsetWidth - padding;
+        const maxY = window.innerHeight - btn.offsetHeight - padding;
+
+        const randomX = Math.max(padding, Math.random() * maxX);
+        const randomY = Math.max(padding, Math.random() * maxY);
+
+        btn.style.left = `${randomX}px`;
+        btn.style.top = `${randomY}px`;
+
+        btn.innerText = phrases[Math.min(escapeCount, phrases.length - 1)];
+        escapeCount++;
+    });
+
+    // Reveal Logic
+    btn.addEventListener('click', function() {
+        document.getElementById('intro-section').style.display = 'none';
+        document.getElementById('scrapbook-section').style.display = 'block';
+        
+        var audio = document.getElementById("myAudio");
+        audio.play().catch(function(error) {
+            console.log("Audio play failed:", error);
+        });
+        
+        window.scrollTo(0,0);
+    });
 </script>
 
 </body>
