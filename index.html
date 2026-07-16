@@ -7,17 +7,16 @@
     
     <title>For You ❤️</title>
 
-    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=Playfair+Display:wght@400;600&family=Quicksand:wght@400;600&display=swap" rel="stylesheet">
+    <!-- Elegant Serif and Minimal Sans Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600&family=Italiana&display=swap" rel="stylesheet">
 
     <style>
         * { box-sizing: border-box; margin: 0; padding: 0; }
 
         body {
-            background-color: #faf1f2;
-            background-image: radial-gradient(#ecc6cb 1px, transparent 1px);
-            background-size: 20px 20px;
-            font-family: 'Quicksand', sans-serif;
-            color: #4a3b3b;
+            background-color: #f6f5f2; /* Warm, clean minimalist gallery background */
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            color: #2b2525;
             overflow-x: hidden;
             min-height: 100vh;
             display: flex;
@@ -26,7 +25,7 @@
             justify-content: center;
         }
 
-        /* INTRO / ENVELOPE DESIGN */
+        /* --- INTRO / LANDING GLASS CARD --- */
         #intro-section {
             display: flex;
             flex-direction: column;
@@ -38,227 +37,297 @@
             overflow: hidden;
         }
 
-        .envelope-wrapper {
-            background: #ffffff;
-            padding: 40px;
-            border-radius: 24px;
-            box-shadow: 0 15px 35px rgba(209, 75, 100, 0.1);
+        .glass-card {
+            background: rgba(255, 255, 255, 0.75);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            padding: 50px 40px;
+            border-radius: 32px;
+            box-shadow: 0 30px 70px rgba(0, 0, 0, 0.03), inset 0 0 0 1px rgba(255, 255, 255, 0.5);
             text-align: center;
-            max-width: 400px;
+            max-width: 440px;
             width: 90%;
-            border: 1px solid #f5dbde;
-            transition: transform 0.3s ease;
-        }
-
-        .envelope-icon {
-            font-size: 4.5rem;
-            display: inline-block;
-            animation: float 2.5s ease-in-out infinite;
-        }
-
-        @keyframes float {
-            0% { transform: translateY(0px) rotate(0deg); }
-            50% { transform: translateY(-10px) rotate(3deg); }
-            100% { transform: translateY(0px) rotate(0deg); }
-        }
-
-        .intro-title {
-            font-family: 'Playfair Display', serif;
-            font-size: 2rem;
-            color: #d14b64;
-            margin-top: 15px;
-        }
-
-        .intro-subtitle {
-            font-family: 'Dancing Script', cursive;
-            font-size: 1.8rem;
-            margin-top: 8px;
-            color: #8c6b6d;
-        }
-
-        .click-btn {
-            margin-top: 30px;
-            background: linear-gradient(135deg, #e55b76, #d14b64);
-            color: white;
-            border: none;
-            padding: 14px 36px;
-            font-size: 1.1rem;
-            font-weight: 600;
-            border-radius: 50px;
-            cursor: pointer;
-            box-shadow: 0 8px 15px rgba(229,91,118,0.25);
-            transition: transform 0.1s ease, left 0.2s ease, top 0.2s ease, background 0.3s;
-            z-index: 10;
-        }
-
-        /* NEW SCRAPBOOK TIMELINE DESIGN */
-        #scrapbook-section {
-            display: none;
-            width: 100%;
-            max-width: 800px;
-            margin: auto;
-            padding: 60px 20px;
-            animation: slideUp 1.2s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-
-        @keyframes slideUp {
-            from { transform: translateY(80px); opacity: 0; }
-            to { transform: translateY(0); opacity: 1; }
-        }
-
-        .letter-paper {
-            background: #ffffff;
-            padding: 45px 35px;
-            border-radius: 24px;
-            box-shadow: 0 15px 30px rgba(0,0,0,0.03);
-            border: 1px solid #f3d5d8;
-            margin-bottom: 50px;
-            text-align: center;
-            position: relative;
-        }
-
-        /* Elegant postal striped border top */
-        .letter-paper::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; right: 0; height: 10px;
-            background: repeating-linear-gradient(-45deg, #e55b76, #e55b76 12px, #fff 12px, #fff 24px, #5c8fcb 24px, #5c8fcb 36px, #fff 36px, #fff 48px);
-            border-top-left-radius: 24px;
-            border-top-right-radius: 24px;
-        }
-
-        .letter-paper h1 {
-            font-family: 'Dancing Script', cursive;
-            font-size: 3.5rem;
-            color: #d14b64;
-            margin-bottom: 20px;
-        }
-
-        .letter-paper p {
-            font-size: 1.15rem;
-            line-height: 1.8;
-            color: #5c4a4a;
-        }
-
-        /* THE MEMORY TIMELINE */
-        .timeline {
-            display: flex;
-            flex-direction: column;
-            gap: 65px;
-            margin-top: 20px;
-        }
-
-        .timeline-item {
+            border: 1px solid rgba(255, 255, 255, 0.4);
             display: flex;
             flex-direction: column;
             align-items: center;
-            width: 100%;
         }
 
-        /* PREMIUM VINTAGE POLAROID CARD (Works for Photos & Videos!) */
-        .polaroid-card {
+        .heart-icon {
+            font-size: 2.5rem;
+            color: #c97a84;
+            margin-bottom: 25px;
+            animation: slowPulse 2s infinite ease-in-out;
+        }
+
+        @keyframes slowPulse {
+            0% { transform: scale(1); opacity: 0.8; }
+            50% { transform: scale(1.1); opacity: 1; }
+            100% { transform: scale(1); opacity: 0.8; }
+        }
+
+        .intro-title {
+            font-family: 'Italiana', serif;
+            font-size: 2.4rem;
+            font-weight: 400;
+            letter-spacing: 1px;
+            color: #1a1515;
+            line-height: 1.3;
+        }
+
+        .intro-subtitle {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-size: 1.2rem;
+            margin-top: 15px;
+            color: #7a6e6e;
+        }
+
+        .click-btn {
+            margin-top: 40px;
+            background: #1a1515;
+            color: #f6f5f2;
+            border: none;
+            padding: 16px 40px;
+            font-size: 0.95rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            font-weight: 500;
+            border-radius: 100px;
+            cursor: pointer;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            z-index: 10;
+        }
+
+        .click-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+            background: #c97a84;
+        }
+
+        /* --- THE BENTO GRID GALLERY --- */
+        #gallery-section {
+            display: none;
+            width: 100%;
+            max-width: 1100px;
+            margin: auto;
+            padding: 80px 24px;
+            animation: revealUp 1.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        @keyframes revealUp {
+            from { transform: translateY(60px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        /* Hero Editorial Header */
+        .editorial-header {
+            text-align: center;
+            margin-bottom: 70px;
+        }
+
+        .editorial-header h1 {
+            font-family: 'Italiana', serif;
+            font-size: 4rem;
+            font-weight: 400;
+            color: #1a1515;
+            letter-spacing: -1px;
+            margin-bottom: 15px;
+        }
+
+        .editorial-header p {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-size: 1.25rem;
+            color: #6e6464;
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        /* Bento Grid Construction */
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: 24px;
+        }
+
+        .bento-card {
             background: #ffffff;
-            padding: 16px 16px 28px 16px;
-            border-radius: 4px;
-            box-shadow: 0 12px 28px rgba(0,0,0,0.06);
-            max-width: 390px;
-            width: 100%;
-            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            border: 1px solid #eaeaea;
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.02);
+            border: 1px solid #eae7e2;
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s;
+            display: flex;
+            flex-direction: column;
+            position: relative;
         }
 
-        .polaroid-card:hover {
-            transform: scale(1.04) rotate(0deg) !important;
-            box-shadow: 0 15px 35px rgba(209,75,100,0.12);
+        .bento-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.06);
         }
 
-        .polaroid-card img, .polaroid-card video {
+        .card-media {
+            position: relative;
             width: 100%;
-            height: 340px;
+            overflow: hidden;
+        }
+
+        /* Dynamic Aspect Ratios based on grid size */
+        .bento-card img, .bento-card video {
+            width: 100%;
+            height: 100%;
             object-fit: cover;
-            border-radius: 2px;
-            background-color: #fafafa;
+            transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
-        /* Stylized placeholder for when a video is not uploaded yet */
-        .video-placeholder {
-            width: 100%;
-            height: 340px;
+        .bento-card:hover .card-media img {
+            transform: scale(1.03);
+        }
+
+        .card-info {
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .card-tag {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #c97a84;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .card-title {
+            font-family: 'Italiana', serif;
+            font-size: 1.6rem;
+            color: #1a1515;
+            margin-bottom: 10px;
+        }
+
+        .card-desc {
+            font-size: 0.95rem;
+            line-height: 1.6;
+            color: #5c5454;
+        }
+
+        /* --- STYLES FOR THE 2 VIDEO CARDS (Looks beautiful even if empty!) --- */
+        .video-box {
+            position: relative;
+            background: #1e1b1b;
+            height: 100%;
+            min-height: 320px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .video-overlay {
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(30, 27, 27, 0.75);
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            background: #fdf5f6;
-            border: 2px dashed #ecc6cb;
-            border-radius: 4px;
-            color: #b58088;
-            padding: 20px;
+            color: #ffffff;
+            padding: 30px;
             text-align: center;
+            z-index: 2;
+            transition: opacity 0.4s;
         }
 
-        .video-placeholder-icon {
+        /* When video actually plays, hide overlay on hover or interaction */
+        .bento-card:hover .video-overlay-loaded {
+            opacity: 0;
+        }
+
+        .play-btn-design {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.15);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+            backdrop-filter: blur(5px);
+            transition: transform 0.3s;
+        }
+
+        .bento-card:hover .play-btn-design {
+            transform: scale(1.1);
+            background: #ffffff;
+            color: #1e1b1b;
+        }
+
+        /* --- RESPONSIVE GRID CONFIGURATION --- */
+        
+        /* CARD 1: Full-width Intro Letter Card */
+        .grid-letter { grid-column: span 12; }
+        
+        /* CARD 2 & 3: Double-column layout */
+        .grid-half-1 { grid-column: span 7; }
+        .grid-half-2 { grid-column: span 5; }
+
+        /* CARD 4 & 5: Video 1 + Photo 3 */
+        .grid-split-1 { grid-column: span 5; }
+        .grid-split-2 { grid-column: span 7; }
+
+        /* CARD 6 & 7: Photo 4 + Video 2 */
+        .grid-last-1 { grid-column: span 6; }
+        .grid-last-2 { grid-column: span 6; }
+
+        /* CARD 8: Photo 5 (Wide display) */
+        .grid-full { grid-column: span 12; }
+
+        /* Set heights for media structures */
+        .grid-half-1 .card-media { height: 450px; }
+        .grid-half-2 .card-media { height: 450px; }
+        .grid-split-1 .card-media { height: 380px; }
+        .grid-split-2 .card-media { height: 380px; }
+        .grid-last-1 .card-media { height: 420px; }
+        .grid-last-2 .card-media { height: 420px; }
+        .grid-full .card-media { height: 500px; }
+
+        @media (max-width: 900px) {
+            .bento-grid { display: flex; flex-direction: column; gap: 24px; }
+            .card-media { height: 350px !important; }
+            .editorial-header h1 { font-size: 2.8rem; }
+        }
+
+        /* --- FOOTER --- */
+        .editorial-footer {
+            text-align: center;
+            padding: 80px 20px 20px 20px;
+            border-top: 1px solid #eae7e2;
+            margin-top: 80px;
+            width: 100%;
+        }
+
+        .editorial-footer h2 {
+            font-family: 'Italiana', serif;
             font-size: 2.5rem;
-            margin-bottom: 10px;
-            animation: pulse 2s infinite;
+            color: #1a1515;
+            margin-bottom: 20px;
         }
 
-        @keyframes pulse {
-            0% { transform: scale(1); opacity: 0.8; }
-            50% { transform: scale(1.08); opacity: 1; }
-            100% { transform: scale(1); opacity: 0.8; }
-        }
-
-        .polaroid-caption {
-            font-family: 'Dancing Script', cursive;
-            font-size: 1.9rem;
-            text-align: center;
-            margin-top: 16px;
-            color: #d14b64;
-        }
-
-        .note-card {
-            background: #fffefb;
-            border-left: 4px solid #e55b76;
-            padding: 20px 25px;
-            border-radius: 12px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.015);
-            max-width: 460px;
-            margin-top: 18px;
-            text-align: center;
-        }
-
-        .note-card p {
-            font-style: italic;
-            font-size: 1.05rem;
-            line-height: 1.6;
-            color: #554444;
-        }
-
-        /* FOOTER */
-        .footer {
-            text-align: center;
-            padding: 60px 20px;
-            margin-top: 60px;
-        }
-
-        .footer p {
+        .editorial-footer p {
+            font-size: 1rem;
+            color: #7a6e6e;
             max-width: 500px;
-            margin: 0 auto 20px auto;
+            margin: 0 auto;
             line-height: 1.7;
-            font-size: 1.1rem;
         }
 
-        .footer h3 {
-            font-family: 'Dancing Script', cursive;
-            font-size: 2.8rem;
-            color: #d14b64;
-        }
-
-        /* Stylized tilt rotations for vintage scrapbook feel */
-        .rot-left-soft { transform: rotate(-1.5deg); }
-        .rot-right-soft { transform: rotate(1.5deg); }
-        .rot-left-hard { transform: rotate(-3deg); }
-        .rot-right-hard { transform: rotate(3deg); }
     </style>
 </head>
 
@@ -269,140 +338,148 @@
     <source src="duvet.mp3" type="audio/mpeg">
 </audio>
 
-<!-- INTRO -->
+<!-- INTRO LANDING PAGE -->
 <div id="intro-section">
-    <div class="envelope-wrapper">
-        <div class="envelope-icon">✉️</div>
-        <h1 class="intro-title">A letter just for you</h1>
-        <h2 class="intro-subtitle">Click below to open it ♡</h2>
-        <button class="click-btn" id="revealBtn">Open It ♥</button>
+    <div class="glass-card">
+        <div class="heart-icon">✦</div>
+        <h1 class="intro-title">You have received a personal entry</h1>
+        <p class="intro-subtitle">curated with love, just for you</p>
+        <button class="click-btn" id="revealBtn">Enter Exhibition</button>
     </div>
 </div>
 
-<!-- SCRAPBOOK -->
-<div id="scrapbook-section">
+<!-- SCRAPBOOK BENTO GALLERY -->
+<div id="gallery-section">
 
-    <div class="letter-paper">
-        <h1>To the one who owns my thoughts</h1>
-        <p>
-            If love had a shape, it would look like you.<br>
-            If peace had a voice, it would sound like you.<br>
-            And if my heart had a home… it would be you.
-        </p>
-    </div>
+    <!-- Premium Editorial Title -->
+    <header class="editorial-header">
+        <h1>THE ART OF YOU</h1>
+        <p>A digital gallery dedicated to my favorite human — showcasing the quiet, beautiful magic of your existence.</p>
+    </header>
 
-    <div class="timeline">
+    <div class="bento-grid">
 
-        <!-- CARD 1: PHOTO (sBY8Aew - Imgur.jpg) -->
-        <div class="timeline-item">
-            <div class="polaroid-card rot-left-hard">
-                <img src="sBY8Aew%20-%20Imgur.jpg" alt="Memory 1">
-                <div class="polaroid-caption">your radiant smile ♡</div>
-            </div>
-            <div class="note-card">
-                <p>There is a soft magic in the way you smile. It completely lights up the room and leaves me memorizing every tiny detail without even trying.</p>
+        <!-- CARD 1: Introduction Letter -->
+        <div class="bento-card grid-letter">
+            <div class="card-info" style="padding: 50px; text-align: center;">
+                <span class="card-tag">Chapter One</span>
+                <h2 class="card-title" style="font-size: 2.4rem; margin-bottom: 15px;">To the one who owns my thoughts</h2>
+                <p class="card-desc" style="font-family: 'Playfair Display', serif; font-style: italic; font-size: 1.15rem; max-width: 700px; margin: 0 auto;">
+                    "If love had a shape, it would look like you. If peace had a voice, it would sound like you. And if my heart had a home… it would be you."
+                </p>
             </div>
         </div>
 
-        <!-- CARD 2: PHOTO (xBTtJNl - Imgur.jpg) -->
-        <div class="timeline-item">
-            <div class="polaroid-card rot-right-soft">
-                <img src="xBTtJNl%20-%20Imgur.jpg" alt="Memory 2">
-                <div class="polaroid-caption">the moment you exist ♡</div>
+        <!-- CARD 2: PHOTO 1 (sBY8Aew - Imgur.jpg) -->
+        <div class="bento-card grid-half-1">
+            <div class="card-media">
+                <img src="sBY8Aew%20-%20Imgur.jpg" alt="Your Smile">
             </div>
-            <div class="note-card">
-                <p>Every time I see you, the world feels softer. Like everything loud inside me finally calms down. You are comfort in human form.</p>
+            <div class="card-info">
+                <span class="card-tag">EXHIBIT A</span>
+                <h3 class="card-title">Your Radiant Smile</h3>
+                <p class="card-desc">There is a soft magic in the way you smile. It completely lights up the room and leaves me memorizing every tiny detail without even trying.</p>
             </div>
         </div>
 
-        <!-- CARD 3: VIDEO RESERVED SLOT #1 -->
-        <div class="timeline-item">
-            <div class="polaroid-card rot-left-soft">
-                <!-- This video tag is set up to try and play 'first-memory.mp4'. 
-                     If the file isn't found, the browser shows a clean placeholder! -->
-                <video autoplay loop muted playsinline onerror="this.style.display='none'; document.getElementById('placeholder-1').style.display='flex';">
+        <!-- CARD 3: PHOTO 2 (xBTtJNl - Imgur.jpg) -->
+        <div class="bento-card grid-half-2">
+            <div class="card-media">
+                <img src="xBTtJNl%20-%20Imgur.jpg" alt="Your Comfort">
+            </div>
+            <div class="card-info">
+                <span class="card-tag">EXHIBIT B</span>
+                <h3 class="card-title">A Living Work of Art</h3>
+                <p class="card-desc">Every time I see you, the world feels softer. Like everything loud inside me finally calms down. You are comfort in human form.</p>
+            </div>
+        </div>
+
+        <!-- CARD 4: VIDEO RESERVED SLOT #1 (Plays video if available, looks beautiful if empty!) -->
+        <div class="bento-card grid-split-1">
+            <div class="card-media video-box">
+                <!-- Video player attempting to play 'first-memory.mp4' -->
+                <video autoplay loop muted playsinline id="firstVideo" style="display:none;" onplay="document.getElementById('v-overlay-1').classList.add('video-overlay-loaded')">
                     <source src="first-memory.mp4" type="video/mp4">
                 </video>
                 
-                <!-- The Placeholder Layout -->
-                <div id="placeholder-1" class="video-placeholder" style="display: none;">
-                    <div class="video-placeholder-icon">📹</div>
-                    <p style="font-size: 0.95rem; font-weight: 600;">Future Video Spot #1</p>
-                    <p style="font-size: 0.8rem; margin-top: 4px; opacity: 0.8;">Upload your video as "first-memory.mp4" to fill this space!</p>
+                <!-- This design overlays perfectly so there is NEVER a blank/broken card -->
+                <div class="video-overlay" id="v-overlay-1">
+                    <div class="play-btn-design">▶</div>
+                    <h4 style="font-family: 'Italiana', serif; font-size: 1.4rem; letter-spacing: 1px;">Captured Moments</h4>
+                    <p style="font-size: 0.75rem; opacity: 0.8; text-transform: uppercase; letter-spacing: 1.5px; margin-top: 8px;">Waiting for first-memory.mp4</p>
                 </div>
-                
-                <div class="polaroid-caption">captured moments 🎬</div>
             </div>
-            <div class="note-card">
-                <p>Sometimes pictures aren't enough to hold how alive you make everything feel. This space is saved for our favorite moving memories.</p>
-            </div>
-        </div>
-
-        <!-- CARD 4: PHOTO (AbmCfZ2 - Imgur.jpg) -->
-        <div class="timeline-item">
-            <div class="polaroid-card rot-right-hard">
-                <img src="AbmCfZ2%20-%20Imgur.jpg" alt="Memory 3">
-                <div class="polaroid-caption">your silent magic ✨</div>
-            </div>
-            <div class="note-card">
-                <p>You don’t even realize it, but your presence changes everything. The way you exist is like poetry that doesn't need words.</p>
+            <div class="card-info">
+                <span class="card-tag">MOTION EXHIBIT I</span>
+                <p class="card-desc">Sometimes pictures aren't enough to hold how alive you make everything feel. This space is saved for our favorite moving memories.</p>
             </div>
         </div>
 
-        <!-- CARD 5: PHOTO (GHKaV5z - Imgur.png) -->
-        <div class="timeline-item">
-            <div class="polaroid-card rot-left-hard">
-                <img src="GHKaV5z%20-%20Imgur.png" alt="Memory 4">
-                <div class="polaroid-caption">my favorite thought ♡</div>
+        <!-- CARD 5: PHOTO 3 (AbmCfZ2 - Imgur.jpg) -->
+        <div class="bento-card grid-split-2">
+            <div class="card-media">
+                <img src="AbmCfZ2%20-%20Imgur.jpg" alt="Silent Magic">
             </div>
-            <div class="note-card">
-                <p>Even on my worst days, thinking about you feels like light breaking through clouds. You became my calm without even trying.</p>
+            <div class="card-info">
+                <span class="card-tag">EXHIBIT C</span>
+                <h3 class="card-title">Your Silent Magic</h3>
+                <p class="card-desc">You don’t even realize it, but your presence changes everything. The way you exist is like poetry that doesn't need words.</p>
             </div>
         </div>
 
-        <!-- CARD 6: VIDEO RESERVED SLOT #2 -->
-        <div class="timeline-item">
-            <div class="polaroid-card rot-right-soft">
-                <!-- This video tag is set up to try and play 'second-memory.mp4'. 
-                     If the file isn't found, the browser shows a clean placeholder! -->
-                <video autoplay loop muted playsinline onerror="this.style.display='none'; document.getElementById('placeholder-2').style.display='flex';">
+        <!-- CARD 6: PHOTO 4 (GHKaV5z - Imgur.png) -->
+        <div class="bento-card grid-last-1">
+            <div class="card-media">
+                <img src="GHKaV5z%20-%20Imgur.png" alt="My Favorite Thought">
+            </div>
+            <div class="card-info">
+                <span class="card-tag">EXHIBIT D</span>
+                <h3 class="card-title">My Favorite Thought</h3>
+                <p class="card-desc">Even on my worst days, thinking about you feels like light breaking through clouds. You became my calm without even trying.</p>
+            </div>
+        </div>
+
+        <!-- CARD 7: VIDEO RESERVED SLOT #2 (Plays video if available, looks beautiful if empty!) -->
+        <div class="bento-card grid-last-2">
+            <div class="card-media video-box">
+                <!-- Video player attempting to play 'second-memory.mp4' -->
+                <video autoplay loop muted playsinline id="secondVideo" style="display:none;" onplay="document.getElementById('v-overlay-2').classList.add('video-overlay-loaded')">
                     <source src="second-memory.mp4" type="video/mp4">
                 </video>
                 
-                <!-- The Placeholder Layout -->
-                <div id="placeholder-2" class="video-placeholder" style="display: none;">
-                    <div class="video-placeholder-icon">✨</div>
-                    <p style="font-size: 0.95rem; font-weight: 600;">Future Video Spot #2</p>
-                    <p style="font-size: 0.8rem; margin-top: 4px; opacity: 0.8;">Upload your video as "second-memory.mp4" to fill this space!</p>
+                <!-- Overlay design -->
+                <div class="video-overlay" id="v-overlay-2">
+                    <div class="play-btn-design">✦</div>
+                    <h4 style="font-family: 'Italiana', serif; font-size: 1.4rem; letter-spacing: 1px;">Pure Happiness</h4>
+                    <p style="font-size: 0.75rem; opacity: 0.8; text-transform: uppercase; letter-spacing: 1.5px; margin-top: 8px;">Waiting for second-memory.mp4</p>
                 </div>
-                
-                <div class="polaroid-caption">pure happiness... 🌸</div>
             </div>
-            <div class="note-card">
-                <p>I want to save every laugh, every little glance, and every single second where we forgot about the rest of the world.</p>
+            <div class="card-info">
+                <span class="card-tag">MOTION EXHIBIT II</span>
+                <p class="card-desc">I want to save every laugh, every little glance, and every single second where we forgot about the rest of the world.</p>
             </div>
         </div>
 
-        <!-- CARD 7: PHOTO (e8Ww4Dx - Imgur.png) -->
-        <div class="timeline-item">
-            <div class="polaroid-card rot-left-soft">
-                <img src="e8Ww4Dx%20-%20Imgur.png" alt="Memory 5">
-                <div class="polaroid-caption">if forever exists... 🌸</div>
+        <!-- CARD 8: PHOTO 5 (e8Ww4Dx - Imgur.jpg) -->
+        <div class="bento-card grid-full">
+            <div class="card-media">
+                <img src="e8Ww4Dx%20-%20Imgur.jpg" alt="If Forever Exists">
             </div>
-            <div class="note-card">
-                <p>I don’t know what the future holds, but I know that if forever had a direction, it would always find its way back to us.</p>
+            <div class="card-info" style="padding: 35px 50px;">
+                <span class="card-tag">EXHIBIT E</span>
+                <h3 class="card-title" style="font-size: 2rem; margin-bottom: 8px;">If Forever Exists...</h3>
+                <p class="card-desc" style="font-size: 1.05rem;">I don’t know what the future holds, but I know that if forever had a direction, it would always find its way back to us.</p>
             </div>
         </div>
 
     </div>
 
-    <!-- FOOTER -->
-    <div class="footer">
-        <p>
-            I don’t promise perfection. I don’t promise easy days. But I promise presence — always staying, always choosing you in every version of life.
-        </p>
-        <h3>— orxnge</h3>
-    </div>
+    <!-- Magazine Editorial Footer -->
+    <footer class="editorial-footer">
+        <h2>A Promise</h2>
+        <p>I don’t promise perfection. I don’t promise easy days. But I promise presence — always staying, always choosing you in every version of life.</p>
+        <p style="font-family: 'Playfair Display', serif; font-style: italic; font-size: 1.4rem; margin-top: 30px; color: #1a1515;">— orxnge</p>
+    </footer>
 
 </div>
 
@@ -423,17 +500,29 @@
         return ('ontouchstart' in window) || (navigator.maxTouchPoints > 0);
     }
 
-    // Runaway Logic
+    // Attempt to load videos. If files exist, display video tag, otherwise fallback perfectly to the styled card!
+    function initVideoCheck(videoId) {
+        const video = document.getElementById(videoId);
+        if (video) {
+            video.style.display = 'block';
+            video.play().catch(err => {
+                // Keep video tag hidden if file doesn't exist
+                video.style.display = 'none';
+            });
+        }
+    }
+
+    // Runaway Button Logic
     btn.addEventListener('mouseover', function() {
-        if (isTouchDevice()) return; // No runaway on mobile phones
+        if (isTouchDevice()) return; // Disable runaway feature on mobile phones
         
-        // After 5 attempts, the button stops running so it is 100% clickable on laptops
+        // After 5 attempts, freeze the button back in place so it is completely clickable
         if (escapeCount >= 5) {
             btn.style.position = 'static';
-            btn.style.margin = '30px auto 0 auto';
+            btn.style.margin = '40px auto 0 auto';
             btn.style.display = 'block';
             btn.innerText = "Okay, open me! ♥";
-            btn.style.background = "linear-gradient(135deg, #2ecc71, #27ae60)"; // Turns green to show success!
+            btn.style.background = "#c97a84"; // Turns beautiful mauve-pink color
             return; 
         }
 
@@ -455,15 +544,20 @@
         escapeCount++;
     });
 
-    // Reveal Logic (Works instantly on click/tap)
+    // Reveal Action
     btn.addEventListener('click', function() {
         document.getElementById('intro-section').style.display = 'none';
-        document.getElementById('scrapbook-section').style.display = 'block';
+        document.getElementById('gallery-section').style.display = 'block';
         
+        // Initialize background audio
         var audio = document.getElementById("myAudio");
         audio.play().catch(function(error) {
-            console.log("Audio play failed:", error);
+            console.log("Audio play deferred:", error);
         });
+
+        // Initialize video checking
+        initVideoCheck('firstVideo');
+        initVideoCheck('secondVideo');
         
         window.scrollTo(0,0);
     });
