@@ -131,7 +131,7 @@
             background: #18181f;
         }
 
-        .card-img {
+        .card-img, .card-video {
             width: 100%;
             height: 100%;
             object-fit: cover;
@@ -162,7 +162,7 @@
             font-style: italic;
         }
 
-        /* Dynamic stacked positioning via CSS variables (applied in JS) */
+        /* Dynamic stacked positioning via CSS variables */
         .card.layer-0 {
             transform: translate3d(0, 0, 0) rotate(0deg);
             z-index: 10;
@@ -178,7 +178,6 @@
             z-index: 8;
             opacity: 0.7;
         }
-        /* Hidden layers waiting at bottom */
         .card.layer-hidden {
             transform: translate3d(0, 0, -100px) scale(0.85);
             z-index: 1;
@@ -186,7 +185,7 @@
             pointer-events: none;
         }
 
-        /* Swipe out animation trigger class */
+        /* Swipe out animation */
         .card.swipe-away {
             transform: translate3d(150%, -40px, 0) rotate(20deg) !important;
             opacity: 0 !important;
@@ -214,7 +213,7 @@
             color: #c97a84;
         }
 
-        /* Simple instruction tag at bottom */
+        /* Instruction tag */
         .hint-text {
             position: absolute;
             bottom: 40px;
@@ -232,7 +231,7 @@
             50% { opacity: 0.8; }
         }
 
-        /* Tiny, clean music status indicator in the corner */
+        /* Interactive Music Toggle */
         .music-indicator {
             position: absolute;
             top: 25px;
@@ -241,12 +240,19 @@
             align-items: center;
             gap: 8px;
             font-size: 0.75rem;
-            color: rgba(255, 255, 255, 0.4);
-            background: rgba(255, 255, 255, 0.03);
-            padding: 6px 14px;
+            color: rgba(255, 255, 255, 0.6);
+            background: rgba(255, 255, 255, 0.05);
+            padding: 8px 16px;
             border-radius: 20px;
-            border: 1px solid rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
             z-index: 20;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .music-indicator:hover {
+            background: rgba(255, 255, 255, 0.1);
+            color: #fff;
         }
 
         .music-dot {
@@ -254,6 +260,9 @@
             height: 6px;
             background-color: #c97a84;
             border-radius: 50%;
+        }
+
+        .music-dot.playing {
             animation: musicWave 1.2s infinite ease-in-out;
         }
 
@@ -270,26 +279,26 @@
 
 <!-- BACKGROUND AUDIO -->
 <audio id="myAudio" loop preload="auto">
-    <source src="duvet.mp3" type="audio/mpeg">
+    <source id="audioSource" src="duvet.mp3" type="audio/mpeg">
 </audio>
 
 <!-- SCREEN 1: THE INVITATION -->
 <div id="intro-screen">
     <button class="envelope-button" onclick="startExperience()">Open Invitation</button>
-    <div class="audio-helper">Turn sound up • duvet.mp3</div>
+    <div class="audio-helper">Music: duvet.mp3</div>
 </div>
 
 <!-- SCREEN 2: 3D CARD STACK GALLERY -->
 <div id="main-stage">
     
-    <div class="music-indicator">
-        <div class="music-dot"></div>
-        <span>duvet.mp3</span>
+    <div class="music-indicator" id="musicToggle" onclick="toggleAudio()">
+        <div class="music-dot" id="musicDot"></div>
+        <span id="musicStatusText">Loading duvet.mp3...</span>
     </div>
 
     <div class="stack-container" id="cardStack">
 
-        <!-- CARD 1 -->
+        <!-- CARD 1 (Photo) -->
         <div class="card">
             <div class="card-img-wrapper">
                 <img class="card-img" src="https://i.imgur.com/sBY8Aew.jpg" alt="Gallery 1">
@@ -300,18 +309,19 @@
             </div>
         </div>
 
-        <!-- CARD 2 -->
+        <!-- CARD 2 (VIDEO 1) -->
         <div class="card">
             <div class="card-img-wrapper">
-                <img class="card-img" src="https://i.imgur.com/xBTtJNl.jpg" alt="Gallery 2">
+                <!-- Plays automatically, loops, and stays muted so music plays uninterrupted -->
+                <video class="card-video" src="video1.mp4" loop muted playsinline></video>
             </div>
             <div class="card-info">
-                <span class="card-tag">02 / Presence</span>
+                <span class="card-tag">02 / Motion</span>
                 <p class="card-text">"Every time I see you, the world feels softer. Like everything loud inside me finally calms down."</p>
             </div>
         </div>
 
-        <!-- CARD 3 -->
+        <!-- CARD 3 (Photo) -->
         <div class="card">
             <div class="card-img-wrapper">
                 <img class="card-img" src="https://i.imgur.com/AbmCfZ2.jpg" alt="Gallery 3">
@@ -322,18 +332,19 @@
             </div>
         </div>
 
-        <!-- CARD 4 -->
+        <!-- CARD 4 (VIDEO 2) -->
         <div class="card">
             <div class="card-img-wrapper">
-                <img class="card-img" src="https://i.imgur.com/GHKaV5z.png" alt="Gallery 4">
+                <!-- Plays automatically, loops, and stays muted so music plays uninterrupted -->
+                <video class="card-video" src="video2.mp4" loop muted playsinline></video>
             </div>
             <div class="card-info">
-                <span class="card-tag">04 / Calm</span>
-                <p class="slide-text card-text">"Even on my worst days, thinking about you feels like light breaking through clouds. You are my calm."</p>
+                <span class="card-tag">04 / Moments</span>
+                <p class="card-text">"Even on my worst days, thinking about you feels like light breaking through clouds. You are my calm."</p>
             </div>
         </div>
 
-        <!-- CARD 5 -->
+        <!-- CARD 5 (Photo) -->
         <div class="card">
             <div class="card-img-wrapper">
                 <img class="card-img" src="https://i.imgur.com/e8Ww4Dx.jpg" alt="Gallery 5">
@@ -360,62 +371,121 @@
     const introScreen = document.getElementById('intro-screen');
     const mainStage = document.getElementById('main-stage');
     const audio = document.getElementById('myAudio');
+    const musicDot = document.getElementById('musicDot');
+    const musicStatusText = document.getElementById('musicStatusText');
     const cards = Array.from(document.querySelectorAll('.card'));
     
     let activeIndex = 0;
+    let isPlaying = false;
 
-    // Initialize the starting card depth layout
+    // --- SMART AUDIO CONTROLLER ---
+    const fileOptions = ['duvet.mp3', 'Duvet.mp3', 'DUVET.MP3'];
+    let currentFileIndex = 0;
+
+    audio.addEventListener('error', () => {
+        if (currentFileIndex < fileOptions.length - 1) {
+            currentFileIndex++;
+            document.getElementById('audioSource').src = fileOptions[currentFileIndex];
+            audio.load();
+            if (isPlaying) audio.play().catch(() => {});
+        } else {
+            musicStatusText.innerText = "Music Error (Check duvet.mp3)";
+            musicDot.classList.remove('playing');
+        }
+    });
+
+    audio.addEventListener('playing', () => {
+        isPlaying = true;
+        musicStatusText.innerText = "Playing Duvet";
+        musicDot.classList.add('playing');
+    });
+
+    audio.addEventListener('pause', () => {
+        isPlaying = false;
+        musicStatusText.innerText = "Music Paused";
+        musicDot.classList.remove('playing');
+    });
+
+    function tryPlayMusic() {
+        audio.play()
+            .then(() => { isPlaying = true; })
+            .catch(err => {
+                console.warn("Audio play deferred:", err);
+                musicStatusText.innerText = "Tap here to play music";
+                musicDot.classList.remove('playing');
+            });
+    }
+
+    function toggleAudio() {
+        if (isPlaying) {
+            audio.pause();
+        } else {
+            audio.play().catch(err => {
+                alert("Please make sure the file 'duvet.mp3' exists!");
+            });
+        }
+    }
+
+    // --- CARD DECK LOGIC ---
     function updateStackLayout() {
         cards.forEach((card, index) => {
-            // Calculate relative offset based on current active card index
             let relativeIndex = (index - activeIndex + cards.length) % cards.length;
 
-            // Reset any swiped animations
             card.classList.remove('layer-0', 'layer-1', 'layer-2', 'layer-hidden', 'swipe-away');
 
             if (relativeIndex === 0) {
                 card.classList.add('layer-0');
+                // Play video if the top card has one
+                const video = card.querySelector('video');
+                if (video) video.play().catch(() => {});
             } else if (relativeIndex === 1) {
                 card.classList.add('layer-1');
             } else if (relativeIndex === 2) {
                 card.classList.add('layer-2');
             } else {
                 card.classList.add('layer-hidden');
+                // Pause videos that are far back to keep performance fast
+                const video = card.querySelector('video');
+                if (video) video.pause();
             }
         });
     }
 
-    // Move top card to the back of the deck
     function handleCardClick() {
         const topCard = cards[activeIndex];
         
-        // Trigger the swipe out animation
+        if (!isPlaying) {
+            tryPlayMusic();
+        }
+
         topCard.classList.add('swipe-away');
 
-        // Transition the layers for the remaining cards after a split second
+        // Pause the swiped away video after it flies off screen
+        const video = topCard.querySelector('video');
+        if (video) {
+            setTimeout(() => video.pause(), 300);
+        }
+
         setTimeout(() => {
             activeIndex = (activeIndex + 1) % cards.length;
             updateStackLayout();
         }, 300);
     }
 
-    // Wire up events on the cards
     cards.forEach(card => {
         card.addEventListener('click', handleCardClick);
     });
 
-    // Start the experience smoothly on click
+    // Start the experience
     function startExperience() {
-        // Safe, dynamic play triggering
-        audio.play().catch(err => console.log("Audio waiting for user:", err));
+        tryPlayMusic();
 
         introScreen.style.opacity = '0';
         setTimeout(() => {
             introScreen.style.display = 'none';
             mainStage.style.display = 'flex';
             
-            // Force browser layout repaint
-            mainStage.offsetHeight;
+            mainStage.offsetHeight; // Reflow
             mainStage.style.opacity = '1';
             
             updateStackLayout();
