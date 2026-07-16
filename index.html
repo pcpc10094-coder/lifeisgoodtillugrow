@@ -7,560 +7,420 @@
     
     <title>For You ❤️</title>
 
-    <!-- Elegant Serif and Minimal Sans Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600&family=Italiana&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
 
     <style>
         * { box-sizing: border-box; margin: 0; padding: 0; }
 
         body {
-            background-color: #f6f5f2; /* Warm, clean minimalist gallery background */
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            color: #2b2525;
-            overflow-x: hidden;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-        }
-
-        /* --- INTRO / LANDING GLASS CARD --- */
-        #intro-section {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
+            background-color: #08080a; /* Ultra-deep midnight tone */
+            font-family: 'Inter', sans-serif;
+            color: #e5e5e5;
+            overflow: hidden;
             height: 100vh;
-            width: 100%;
-            position: relative;
-            overflow: hidden;
+            width: 100vw;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            user-select: none;
+            -webkit-user-select: none;
         }
 
-        .glass-card {
-            background: rgba(255, 255, 255, 0.75);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            padding: 50px 40px;
-            border-radius: 32px;
-            box-shadow: 0 30px 70px rgba(0, 0, 0, 0.03), inset 0 0 0 1px rgba(255, 255, 255, 0.5);
-            text-align: center;
-            max-width: 440px;
-            width: 90%;
-            border: 1px solid rgba(255, 255, 255, 0.4);
+        /* Ambient glowing background blobs */
+        .glow-bg {
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(193, 122, 131, 0.08) 0%, rgba(0,0,0,0) 70%);
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        /* --- SCREEN 1: THE ENTRANCE --- */
+        #intro-screen {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: #08080a;
             display: flex;
             flex-direction: column;
             align-items: center;
+            justify-content: center;
+            z-index: 100;
+            transition: opacity 0.8s cubic-bezier(0.25, 1, 0.5, 1), visibility 0.8s;
         }
 
-        .heart-icon {
-            font-size: 2.5rem;
-            color: #c97a84;
-            margin-bottom: 25px;
-            animation: slowPulse 2s infinite ease-in-out;
-        }
-
-        @keyframes slowPulse {
-            0% { transform: scale(1); opacity: 0.8; }
-            50% { transform: scale(1.1); opacity: 1; }
-            100% { transform: scale(1); opacity: 0.8; }
-        }
-
-        .intro-title {
-            font-family: 'Italiana', serif;
-            font-size: 2.4rem;
-            font-weight: 400;
-            letter-spacing: 1px;
-            color: #1a1515;
-            line-height: 1.3;
-        }
-
-        .intro-subtitle {
+        .envelope-button {
+            background: none;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            padding: 16px 36px;
+            color: #ffffff;
             font-family: 'Playfair Display', serif;
+            font-size: 1.1rem;
             font-style: italic;
-            font-size: 1.2rem;
-            margin-top: 15px;
-            color: #7a6e6e;
-        }
-
-        .click-btn {
-            margin-top: 40px;
-            background: #1a1515;
-            color: #f6f5f2;
-            border: none;
-            padding: 16px 40px;
-            font-size: 0.95rem;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            font-weight: 500;
-            border-radius: 100px;
+            border-radius: 50px;
             cursor: pointer;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-            z-index: 10;
+            transition: all 0.4s ease;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+            letter-spacing: 1px;
+            z-index: 101;
         }
 
-        .click-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
-            background: #c97a84;
-        }
-
-        /* --- THE BENTO GRID GALLERY --- */
-        #gallery-section {
-            display: none;
-            width: 100%;
-            max-width: 1100px;
-            margin: auto;
-            padding: 80px 24px;
-            animation: revealUp 1.4s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-
-        @keyframes revealUp {
-            from { transform: translateY(60px); opacity: 0; }
-            to { transform: translateY(0); opacity: 1; }
-        }
-
-        /* Hero Editorial Header */
-        .editorial-header {
-            text-align: center;
-            margin-bottom: 70px;
-        }
-
-        .editorial-header h1 {
-            font-family: 'Italiana', serif;
-            font-size: 4rem;
-            font-weight: 400;
-            color: #1a1515;
-            letter-spacing: -1px;
-            margin-bottom: 15px;
-        }
-
-        .editorial-header p {
-            font-family: 'Playfair Display', serif;
-            font-style: italic;
-            font-size: 1.25rem;
-            color: #6e6464;
-            max-width: 600px;
-            margin: 0 auto;
-            line-height: 1.6;
-        }
-
-        /* Bento Grid Construction */
-        .bento-grid {
-            display: grid;
-            grid-template-columns: repeat(12, 1fr);
-            gap: 24px;
-        }
-
-        .bento-card {
+        .envelope-button:hover {
             background: #ffffff;
-            border-radius: 24px;
-            overflow: hidden;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.02);
-            border: 1px solid #eae7e2;
-            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s;
+            color: #08080a;
+            border-color: #ffffff;
+            transform: translateY(-2px);
+            box-shadow: 0 15px 35px rgba(255, 255, 255, 0.1);
+        }
+
+        .audio-helper {
+            margin-top: 20px;
+            font-size: 0.75rem;
+            color: rgba(255, 255, 255, 0.3);
+            letter-spacing: 0.5px;
+        }
+
+        /* --- SCREEN 2: THE CARD STACK --- */
+        #main-stage {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 1s ease;
+            z-index: 5;
+        }
+
+        /* Stack Container */
+        .stack-container {
+            position: relative;
+            width: 320px;
+            height: 480px;
+            perspective: 1000px;
+        }
+
+        /* Card Blueprint */
+        .card {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: #111115;
+            border-radius: 20px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.6), inset 0 0 0 1px rgba(255,255,255,0.05);
+            padding: 16px;
             display: flex;
             flex-direction: column;
-            position: relative;
-        }
-
-        .bento-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.06);
-        }
-
-        .card-media {
-            position: relative;
-            width: 100%;
+            justify-content: space-between;
+            transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.6s ease, z-index 0.6s ease;
+            cursor: pointer;
             overflow: hidden;
+            transform-origin: center bottom;
         }
 
-        /* Dynamic Aspect Ratios based on grid size */
-        .bento-card img, .bento-card video {
+        .card-img-wrapper {
+            width: 100%;
+            height: 65%;
+            border-radius: 14px;
+            overflow: hidden;
+            position: relative;
+            background: #18181f;
+        }
+
+        .card-img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-
-        .bento-card:hover .card-media img {
-            transform: scale(1.03);
         }
 
         .card-info {
-            padding: 24px;
+            height: 30%;
             display: flex;
             flex-direction: column;
             justify-content: center;
+            padding-top: 5px;
         }
 
         .card-tag {
-            font-size: 0.75rem;
+            font-size: 0.7rem;
             text-transform: uppercase;
             letter-spacing: 2px;
-            color: #c97a84;
-            font-weight: 600;
+            color: #c97a84; /* Elegant rose gold */
+            font-weight: 500;
             margin-bottom: 8px;
         }
 
-        .card-title {
-            font-family: 'Italiana', serif;
-            font-size: 1.6rem;
-            color: #1a1515;
-            margin-bottom: 10px;
-        }
-
-        .card-desc {
-            font-size: 0.95rem;
-            line-height: 1.6;
-            color: #5c5454;
-        }
-
-        /* --- STYLES FOR THE 2 VIDEO CARDS (Looks beautiful even if empty!) --- */
-        .video-box {
-            position: relative;
-            background: #1e1b1b;
-            height: 100%;
-            min-height: 320px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .video-overlay {
-            position: absolute;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background: rgba(30, 27, 27, 0.75);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
+        .card-text {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.15rem;
+            line-height: 1.45;
             color: #ffffff;
-            padding: 30px;
-            text-align: center;
-            z-index: 2;
-            transition: opacity 0.4s;
+            font-style: italic;
         }
 
-        /* When video actually plays, hide overlay on hover or interaction */
-        .bento-card:hover .video-overlay-loaded {
+        /* Dynamic stacked positioning via CSS variables (applied in JS) */
+        .card.layer-0 {
+            transform: translate3d(0, 0, 0) rotate(0deg);
+            z-index: 10;
+            opacity: 1;
+        }
+        .card.layer-1 {
+            transform: translate3d(8px, -15px, -20px) rotate(1.5deg);
+            z-index: 9;
+            opacity: 0.9;
+        }
+        .card.layer-2 {
+            transform: translate3d(-8px, -30px, -40px) rotate(-1.5deg);
+            z-index: 8;
+            opacity: 0.7;
+        }
+        /* Hidden layers waiting at bottom */
+        .card.layer-hidden {
+            transform: translate3d(0, 0, -100px) scale(0.85);
+            z-index: 1;
             opacity: 0;
+            pointer-events: none;
         }
 
-        .play-btn-design {
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.15);
-            border: 1px solid rgba(255, 255, 255, 0.3);
+        /* Swipe out animation trigger class */
+        .card.swipe-away {
+            transform: translate3d(150%, -40px, 0) rotate(20deg) !important;
+            opacity: 0 !important;
+            pointer-events: none;
+        }
+
+        /* Special text-only layout card */
+        .card-text-only {
+            justify-content: center;
+            text-align: center;
+            background: radial-gradient(circle at center, #1b161c 0%, #111115 100%);
+            padding: 30px;
+        }
+
+        .card-text-only .card-text {
+            font-size: 1.4rem;
+            line-height: 1.6;
+            margin-bottom: 25px;
+        }
+
+        .card-author {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-size: 1.1rem;
+            color: #c97a84;
+        }
+
+        /* Simple instruction tag at bottom */
+        .hint-text {
+            position: absolute;
+            bottom: 40px;
+            font-size: 0.75rem;
+            color: rgba(255, 255, 255, 0.25);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            z-index: 5;
+            animation: pulse 2s infinite ease-in-out;
+            pointer-events: none;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 0.8; }
+        }
+
+        /* Tiny, clean music status indicator in the corner */
+        .music-indicator {
+            position: absolute;
+            top: 25px;
+            right: 25px;
             display: flex;
             align-items: center;
-            justify-content: center;
-            font-size: 1.4rem;
-            margin-bottom: 15px;
-            backdrop-filter: blur(5px);
-            transition: transform 0.3s;
+            gap: 8px;
+            font-size: 0.75rem;
+            color: rgba(255, 255, 255, 0.4);
+            background: rgba(255, 255, 255, 0.03);
+            padding: 6px 14px;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            z-index: 20;
         }
 
-        .bento-card:hover .play-btn-design {
-            transform: scale(1.1);
-            background: #ffffff;
-            color: #1e1b1b;
+        .music-dot {
+            width: 6px;
+            height: 6px;
+            background-color: #c97a84;
+            border-radius: 50%;
+            animation: musicWave 1.2s infinite ease-in-out;
         }
 
-        /* --- RESPONSIVE GRID CONFIGURATION --- */
-        
-        /* CARD 1: Full-width Intro Letter Card */
-        .grid-letter { grid-column: span 12; }
-        
-        /* CARD 2 & 3: Double-column layout */
-        .grid-half-1 { grid-column: span 7; }
-        .grid-half-2 { grid-column: span 5; }
-
-        /* CARD 4 & 5: Video 1 + Photo 3 */
-        .grid-split-1 { grid-column: span 5; }
-        .grid-split-2 { grid-column: span 7; }
-
-        /* CARD 6 & 7: Photo 4 + Video 2 */
-        .grid-last-1 { grid-column: span 6; }
-        .grid-last-2 { grid-column: span 6; }
-
-        /* CARD 8: Photo 5 (Wide display) */
-        .grid-full { grid-column: span 12; }
-
-        /* Set heights for media structures */
-        .grid-half-1 .card-media { height: 450px; }
-        .grid-half-2 .card-media { height: 450px; }
-        .grid-split-1 .card-media { height: 380px; }
-        .grid-split-2 .card-media { height: 380px; }
-        .grid-last-1 .card-media { height: 420px; }
-        .grid-last-2 .card-media { height: 420px; }
-        .grid-full .card-media { height: 500px; }
-
-        @media (max-width: 900px) {
-            .bento-grid { display: flex; flex-direction: column; gap: 24px; }
-            .card-media { height: 350px !important; }
-            .editorial-header h1 { font-size: 2.8rem; }
+        @keyframes musicWave {
+            0%, 100% { transform: scale(0.8); opacity: 0.5; }
+            50% { transform: scale(1.3); opacity: 1; }
         }
-
-        /* --- FOOTER --- */
-        .editorial-footer {
-            text-align: center;
-            padding: 80px 20px 20px 20px;
-            border-top: 1px solid #eae7e2;
-            margin-top: 80px;
-            width: 100%;
-        }
-
-        .editorial-footer h2 {
-            font-family: 'Italiana', serif;
-            font-size: 2.5rem;
-            color: #1a1515;
-            margin-bottom: 20px;
-        }
-
-        .editorial-footer p {
-            font-size: 1rem;
-            color: #7a6e6e;
-            max-width: 500px;
-            margin: 0 auto;
-            line-height: 1.7;
-        }
-
     </style>
 </head>
 
 <body>
 
-<!-- AUDIO PLAYER -->
-<audio id="myAudio" loop>
+<div class="glow-bg"></div>
+
+<!-- BACKGROUND AUDIO -->
+<audio id="myAudio" loop preload="auto">
     <source src="duvet.mp3" type="audio/mpeg">
 </audio>
 
-<!-- INTRO LANDING PAGE -->
-<div id="intro-section">
-    <div class="glass-card">
-        <div class="heart-icon">✦</div>
-        <h1 class="intro-title">You have received a personal entry</h1>
-        <p class="intro-subtitle">curated with love, just for you</p>
-        <button class="click-btn" id="revealBtn">Enter Exhibition</button>
-    </div>
+<!-- SCREEN 1: THE INVITATION -->
+<div id="intro-screen">
+    <button class="envelope-button" onclick="startExperience()">Open Invitation</button>
+    <div class="audio-helper">Turn sound up • duvet.mp3</div>
 </div>
 
-<!-- SCRAPBOOK BENTO GALLERY -->
-<div id="gallery-section">
+<!-- SCREEN 2: 3D CARD STACK GALLERY -->
+<div id="main-stage">
+    
+    <div class="music-indicator">
+        <div class="music-dot"></div>
+        <span>duvet.mp3</span>
+    </div>
 
-    <!-- Premium Editorial Title -->
-    <header class="editorial-header">
-        <h1>THE ART OF YOU</h1>
-        <p>A digital gallery dedicated to my favorite human — showcasing the quiet, beautiful magic of your existence.</p>
-    </header>
+    <div class="stack-container" id="cardStack">
 
-    <div class="bento-grid">
-
-        <!-- CARD 1: Introduction Letter -->
-        <div class="bento-card grid-letter">
-            <div class="card-info" style="padding: 50px; text-align: center;">
-                <span class="card-tag">Chapter One</span>
-                <h2 class="card-title" style="font-size: 2.4rem; margin-bottom: 15px;">To the one who owns my thoughts</h2>
-                <p class="card-desc" style="font-family: 'Playfair Display', serif; font-style: italic; font-size: 1.15rem; max-width: 700px; margin: 0 auto;">
-                    "If love had a shape, it would look like you. If peace had a voice, it would sound like you. And if my heart had a home… it would be you."
-                </p>
-            </div>
-        </div>
-
-        <!-- CARD 2: PHOTO 1 (sBY8Aew - Imgur.jpg) -->
-        <div class="bento-card grid-half-1">
-            <div class="card-media">
-                <img src="sBY8Aew%20-%20Imgur.jpg" alt="Your Smile">
+        <!-- CARD 1 -->
+        <div class="card">
+            <div class="card-img-wrapper">
+                <img class="card-img" src="https://i.imgur.com/sBY8Aew.jpg" alt="Gallery 1">
             </div>
             <div class="card-info">
-                <span class="card-tag">EXHIBIT A</span>
-                <h3 class="card-title">Your Radiant Smile</h3>
-                <p class="card-desc">There is a soft magic in the way you smile. It completely lights up the room and leaves me memorizing every tiny detail without even trying.</p>
+                <span class="card-tag">01 / Your Smile</span>
+                <p class="card-text">"There is a soft magic in the way you smile. It completely lights up the room and leaves me memorizing every tiny detail."</p>
             </div>
         </div>
 
-        <!-- CARD 3: PHOTO 2 (xBTtJNl - Imgur.jpg) -->
-        <div class="bento-card grid-half-2">
-            <div class="card-media">
-                <img src="xBTtJNl%20-%20Imgur.jpg" alt="Your Comfort">
+        <!-- CARD 2 -->
+        <div class="card">
+            <div class="card-img-wrapper">
+                <img class="card-img" src="https://i.imgur.com/xBTtJNl.jpg" alt="Gallery 2">
             </div>
             <div class="card-info">
-                <span class="card-tag">EXHIBIT B</span>
-                <h3 class="card-title">A Living Work of Art</h3>
-                <p class="card-desc">Every time I see you, the world feels softer. Like everything loud inside me finally calms down. You are comfort in human form.</p>
+                <span class="card-tag">02 / Presence</span>
+                <p class="card-text">"Every time I see you, the world feels softer. Like everything loud inside me finally calms down."</p>
             </div>
         </div>
 
-        <!-- CARD 4: VIDEO RESERVED SLOT #1 (Plays video if available, looks beautiful if empty!) -->
-        <div class="bento-card grid-split-1">
-            <div class="card-media video-box">
-                <!-- Video player attempting to play 'first-memory.mp4' -->
-                <video autoplay loop muted playsinline id="firstVideo" style="display:none;" onplay="document.getElementById('v-overlay-1').classList.add('video-overlay-loaded')">
-                    <source src="first-memory.mp4" type="video/mp4">
-                </video>
-                
-                <!-- This design overlays perfectly so there is NEVER a blank/broken card -->
-                <div class="video-overlay" id="v-overlay-1">
-                    <div class="play-btn-design">▶</div>
-                    <h4 style="font-family: 'Italiana', serif; font-size: 1.4rem; letter-spacing: 1px;">Captured Moments</h4>
-                    <p style="font-size: 0.75rem; opacity: 0.8; text-transform: uppercase; letter-spacing: 1.5px; margin-top: 8px;">Waiting for first-memory.mp4</p>
-                </div>
+        <!-- CARD 3 -->
+        <div class="card">
+            <div class="card-img-wrapper">
+                <img class="card-img" src="https://i.imgur.com/AbmCfZ2.jpg" alt="Gallery 3">
             </div>
             <div class="card-info">
-                <span class="card-tag">MOTION EXHIBIT I</span>
-                <p class="card-desc">Sometimes pictures aren't enough to hold how alive you make everything feel. This space is saved for our favorite moving memories.</p>
+                <span class="card-tag">03 / Magic</span>
+                <p class="card-text">"You don’t even realize it, but your presence changes everything. The way you exist is like poetry."</p>
             </div>
         </div>
 
-        <!-- CARD 5: PHOTO 3 (AbmCfZ2 - Imgur.jpg) -->
-        <div class="bento-card grid-split-2">
-            <div class="card-media">
-                <img src="AbmCfZ2%20-%20Imgur.jpg" alt="Silent Magic">
+        <!-- CARD 4 -->
+        <div class="card">
+            <div class="card-img-wrapper">
+                <img class="card-img" src="https://i.imgur.com/GHKaV5z.png" alt="Gallery 4">
             </div>
             <div class="card-info">
-                <span class="card-tag">EXHIBIT C</span>
-                <h3 class="card-title">Your Silent Magic</h3>
-                <p class="card-desc">You don’t even realize it, but your presence changes everything. The way you exist is like poetry that doesn't need words.</p>
+                <span class="card-tag">04 / Calm</span>
+                <p class="slide-text card-text">"Even on my worst days, thinking about you feels like light breaking through clouds. You are my calm."</p>
             </div>
         </div>
 
-        <!-- CARD 6: PHOTO 4 (GHKaV5z - Imgur.png) -->
-        <div class="bento-card grid-last-1">
-            <div class="card-media">
-                <img src="GHKaV5z%20-%20Imgur.png" alt="My Favorite Thought">
+        <!-- CARD 5 -->
+        <div class="card">
+            <div class="card-img-wrapper">
+                <img class="card-img" src="https://i.imgur.com/e8Ww4Dx.jpg" alt="Gallery 5">
             </div>
             <div class="card-info">
-                <span class="card-tag">EXHIBIT D</span>
-                <h3 class="card-title">My Favorite Thought</h3>
-                <p class="card-desc">Even on my worst days, thinking about you feels like light breaking through clouds. You became my calm without even trying.</p>
+                <span class="card-tag">05 / Direction</span>
+                <p class="card-text">"I don’t know what the future holds, but if forever had a direction, it would always find its way back to us."</p>
             </div>
         </div>
 
-        <!-- CARD 7: VIDEO RESERVED SLOT #2 (Plays video if available, looks beautiful if empty!) -->
-        <div class="bento-card grid-last-2">
-            <div class="card-media video-box">
-                <!-- Video player attempting to play 'second-memory.mp4' -->
-                <video autoplay loop muted playsinline id="secondVideo" style="display:none;" onplay="document.getElementById('v-overlay-2').classList.add('video-overlay-loaded')">
-                    <source src="second-memory.mp4" type="video/mp4">
-                </video>
-                
-                <!-- Overlay design -->
-                <div class="video-overlay" id="v-overlay-2">
-                    <div class="play-btn-design">✦</div>
-                    <h4 style="font-family: 'Italiana', serif; font-size: 1.4rem; letter-spacing: 1px;">Pure Happiness</h4>
-                    <p style="font-size: 0.75rem; opacity: 0.8; text-transform: uppercase; letter-spacing: 1.5px; margin-top: 8px;">Waiting for second-memory.mp4</p>
-                </div>
-            </div>
-            <div class="card-info">
-                <span class="card-tag">MOTION EXHIBIT II</span>
-                <p class="card-desc">I want to save every laugh, every little glance, and every single second where we forgot about the rest of the world.</p>
-            </div>
-        </div>
-
-        <!-- CARD 8: PHOTO 5 (e8Ww4Dx - Imgur.jpg) -->
-        <div class="bento-card grid-full">
-            <div class="card-media">
-                <img src="e8Ww4Dx%20-%20Imgur.jpg" alt="If Forever Exists">
-            </div>
-            <div class="card-info" style="padding: 35px 50px;">
-                <span class="card-tag">EXHIBIT E</span>
-                <h3 class="card-title" style="font-size: 2rem; margin-bottom: 8px;">If Forever Exists...</h3>
-                <p class="card-desc" style="font-size: 1.05rem;">I don’t know what the future holds, but I know that if forever had a direction, it would always find its way back to us.</p>
-            </div>
+        <!-- CARD 6: THE FINAL WRAP (TEXT) -->
+        <div class="card card-text-only">
+            <span class="card-tag" style="margin-bottom: 20px;">A Promise</span>
+            <p class="card-text">"I promise presence — always staying, always choosing you in every version of life."</p>
+            <p class="card-author">— orxnge</p>
         </div>
 
     </div>
 
-    <!-- Magazine Editorial Footer -->
-    <footer class="editorial-footer">
-        <h2>A Promise</h2>
-        <p>I don’t promise perfection. I don’t promise easy days. But I promise presence — always staying, always choosing you in every version of life.</p>
-        <p style="font-family: 'Playfair Display', serif; font-style: italic; font-size: 1.4rem; margin-top: 30px; color: #1a1515;">— orxnge</p>
-    </footer>
-
+    <div class="hint-text">Click cards to browse</div>
 </div>
 
 <script>
-    const btn = document.getElementById('revealBtn');
+    const introScreen = document.getElementById('intro-screen');
+    const mainStage = document.getElementById('main-stage');
+    const audio = document.getElementById('myAudio');
+    const cards = Array.from(document.querySelectorAll('.card'));
     
-    const phrases = [
-        "Catch me! 😜",
-        "Nope! Try again~",
-        "Too slow! ♡",
-        "Over here! 🌸",
-        "Come on, you can do it!",
-        "Okay, I'll stop! Click me ♥"
-    ];
-    let escapeCount = 0;
+    let activeIndex = 0;
 
-    function isTouchDevice() {
-        return ('ontouchstart' in window) || (navigator.maxTouchPoints > 0);
-    }
+    // Initialize the starting card depth layout
+    function updateStackLayout() {
+        cards.forEach((card, index) => {
+            // Calculate relative offset based on current active card index
+            let relativeIndex = (index - activeIndex + cards.length) % cards.length;
 
-    // Attempt to load videos. If files exist, display video tag, otherwise fallback perfectly to the styled card!
-    function initVideoCheck(videoId) {
-        const video = document.getElementById(videoId);
-        if (video) {
-            video.style.display = 'block';
-            video.play().catch(err => {
-                // Keep video tag hidden if file doesn't exist
-                video.style.display = 'none';
-            });
-        }
-    }
+            // Reset any swiped animations
+            card.classList.remove('layer-0', 'layer-1', 'layer-2', 'layer-hidden', 'swipe-away');
 
-    // Runaway Button Logic
-    btn.addEventListener('mouseover', function() {
-        if (isTouchDevice()) return; // Disable runaway feature on mobile phones
-        
-        // After 5 attempts, freeze the button back in place so it is completely clickable
-        if (escapeCount >= 5) {
-            btn.style.position = 'static';
-            btn.style.margin = '40px auto 0 auto';
-            btn.style.display = 'block';
-            btn.innerText = "Okay, open me! ♥";
-            btn.style.background = "#c97a84"; // Turns beautiful mauve-pink color
-            return; 
-        }
-
-        if (btn.style.position !== 'absolute') {
-            btn.style.position = 'absolute';
-        }
-
-        const padding = 70;
-        const maxX = window.innerWidth - btn.offsetWidth - padding;
-        const maxY = window.innerHeight - btn.offsetHeight - padding;
-
-        const randomX = Math.max(padding, Math.random() * maxX);
-        const randomY = Math.max(padding, Math.random() * maxY);
-
-        btn.style.left = `${randomX}px`;
-        btn.style.top = `${randomY}px`;
-
-        btn.innerText = phrases[Math.min(escapeCount, phrases.length - 1)];
-        escapeCount++;
-    });
-
-    // Reveal Action
-    btn.addEventListener('click', function() {
-        document.getElementById('intro-section').style.display = 'none';
-        document.getElementById('gallery-section').style.display = 'block';
-        
-        // Initialize background audio
-        var audio = document.getElementById("myAudio");
-        audio.play().catch(function(error) {
-            console.log("Audio play deferred:", error);
+            if (relativeIndex === 0) {
+                card.classList.add('layer-0');
+            } else if (relativeIndex === 1) {
+                card.classList.add('layer-1');
+            } else if (relativeIndex === 2) {
+                card.classList.add('layer-2');
+            } else {
+                card.classList.add('layer-hidden');
+            }
         });
+    }
 
-        // Initialize video checking
-        initVideoCheck('firstVideo');
-        initVideoCheck('secondVideo');
+    // Move top card to the back of the deck
+    function handleCardClick() {
+        const topCard = cards[activeIndex];
         
-        window.scrollTo(0,0);
+        // Trigger the swipe out animation
+        topCard.classList.add('swipe-away');
+
+        // Transition the layers for the remaining cards after a split second
+        setTimeout(() => {
+            activeIndex = (activeIndex + 1) % cards.length;
+            updateStackLayout();
+        }, 300);
+    }
+
+    // Wire up events on the cards
+    cards.forEach(card => {
+        card.addEventListener('click', handleCardClick);
     });
+
+    // Start the experience smoothly on click
+    function startExperience() {
+        // Safe, dynamic play triggering
+        audio.play().catch(err => console.log("Audio waiting for user:", err));
+
+        introScreen.style.opacity = '0';
+        setTimeout(() => {
+            introScreen.style.display = 'none';
+            mainStage.style.display = 'flex';
+            
+            // Force browser layout repaint
+            mainStage.offsetHeight;
+            mainStage.style.opacity = '1';
+            
+            updateStackLayout();
+        }, 800);
+    }
 </script>
 
 </body>
